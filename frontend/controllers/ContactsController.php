@@ -9,6 +9,8 @@ class ContactsController extends Controller
     {
         $contactsImporter = new ContactsImporter("/tmp/contacts.csv", ['name', 'phone']);
 
+        \Yii::$app->db->open(); // проверка, что параметры подключения к БД установлены верно
+
         return $this->render('index');
     }
 }
