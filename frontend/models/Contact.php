@@ -8,4 +8,14 @@ class Contact extends Model
     public $phone;
     public $email;
     public $position;
+
+    public function attributeLabels()
+    {
+        return [
+            'name' => 'Имя',
+            'phone' => 'Телефон',
+            'email' => 'Электронная почта',
+            'position' => 'Должность'
+        ];
+    }
 }
