@@ -1,13 +1,14 @@
 <?php
 namespace frontend\models;
-use yii\base\Model;
 
-class Contact extends Model
+use yii\db\ActiveRecord;
+
+class Contact extends ActiveRecord
 {
-    public $name;
-    public $phone;
-    public $email;
-    public $position;
+//    public $name;
+//    public $phone;
+//    public $email;
+//    public $position;
 
     public function attributeLabels()
     {

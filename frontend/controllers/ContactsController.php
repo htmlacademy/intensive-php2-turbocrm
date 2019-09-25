@@ -1,5 +1,6 @@
 <?php
 namespace frontend\controllers;
+use frontend\models\Contact;
 use htmlacademy\utils\ContactsImporter;
 use yii\web\Controller;
 
@@ -7,9 +8,14 @@ class ContactsController extends Controller
 {
     public function actionIndex()
     {
-        $contactsImporter = new ContactsImporter("/tmp/contacts.csv", ['name', 'phone']);
+        $contact = new Contact();
+        $contact->name = "Петров Иван";
+        $contact->phone = "79005552211";
+        $contact->email = "petro.ivan@mail.ru";
+        $contact->position = "Менеджер";
 
-        \Yii::$app->db->open(); // проверка, что параметры подключения к БД установлены верно
+        // сохранение модели в базе данных
+        $contact->save();
 
         return $this->render('index');
     }
