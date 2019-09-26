@@ -8,16 +8,11 @@ class ContactsController extends Controller
 {
     public function actionIndex()
     {
-        $props = [
-            'name' => 'Титов Денис',
-            'email' => 'den4ik@mail.ru',
-            'phone' => '78006994521',
-            'position' => 'Бухгалтер'
-        ];
+        $contact = Contact::findOne(['email' => 'den4ik@mail.ru']);
 
-        $contact = new Contact();
-        $contact->attributes = $props;
-
-        $contact->save();
+        if ($contact) {
+            $contact->phone = "79058889421";
+            $contact->save();
+        }
     }
 }
