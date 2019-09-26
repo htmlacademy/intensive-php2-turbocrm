@@ -2,7 +2,6 @@
 namespace frontend\controllers;
 use frontend\models\Company;
 use frontend\models\Contact;
-use htmlacademy\utils\ContactsImporter;
 use yii\web\Controller;
 
 class ContactsController extends Controller
