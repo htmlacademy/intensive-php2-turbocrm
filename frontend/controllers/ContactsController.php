@@ -10,8 +10,8 @@ class ContactsController extends Controller
 {
     public function actionIndex()
     {
-        $company = Company::findOne(1);
-        $contacts = $company->activeContacts;
+        $company = Company::find()->where(1)->joinWith('contacts')->one();
+        $contacts = $company->contacts;
 
         foreach ($contacts as $contact) {
             echo $contact->name, $contact->phone, $contact->company->name;
