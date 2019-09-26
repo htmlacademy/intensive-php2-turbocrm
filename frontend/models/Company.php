@@ -19,4 +19,8 @@ class Company extends ActiveRecord
     public function getContacts() {
         return $this->hasMany(Contact::class, ['company_id' => 'id'])->inverseOf('company');
     }
+
+    public function getActiveContacts() {
+        return $this->getContacts()->where(['status' => '1'])->orderBy(['dt_add' => SORT_ASC]);
+    }
 }
