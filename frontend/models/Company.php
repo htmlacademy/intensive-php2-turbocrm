@@ -15,4 +15,8 @@ class Company extends ActiveRecord
             'ogrn' => 'ОГРН'
         ];
     }
+
+    public function getContacts() {
+        return $this->hasMany(Contact::class, ['company_id' => 'id'])->inverseOf('company');
+    }
 }

@@ -21,4 +21,8 @@ class Contact extends ActiveRecord
             [['name', 'phone', 'email', 'position'], 'safe']
         ];
     }
+
+    public function getCompany() {
+        return $this->hasOne(Company::class, ['id' => 'company_id']);
+    }
 }
