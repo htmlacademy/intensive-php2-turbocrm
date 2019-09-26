@@ -5,11 +5,6 @@ use yii\db\ActiveRecord;
 
 class Contact extends ActiveRecord
 {
-//    public $name;
-//    public $phone;
-//    public $email;
-//    public $position;
-
     public function attributeLabels()
     {
         return [
@@ -17,6 +12,13 @@ class Contact extends ActiveRecord
             'phone' => 'Телефон',
             'email' => 'Электронная почта',
             'position' => 'Должность'
+        ];
+    }
+
+    public function rules()
+    {
+        return [
+            [['name', 'phone', 'email', 'position'], 'safe']
         ];
     }
 }
