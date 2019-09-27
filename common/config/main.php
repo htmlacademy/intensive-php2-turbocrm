@@ -10,6 +10,11 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => false,
+            'rules' => [
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                'persons' => 'contacts/index',
+                'contacts/status/<status:\w+>' => 'contacts/filter',
+            ]
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

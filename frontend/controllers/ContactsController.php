@@ -29,4 +29,11 @@ class ContactsController extends Controller
 
         return $this->render('view', ['contact' => $contact]);
     }
+
+    public function actionFilter($status)
+    {
+        $contacts = Contact::findAll(['status' => $status]);
+
+        return $this->render('index', ['contacts' => $contacts]);
+    }
 }
