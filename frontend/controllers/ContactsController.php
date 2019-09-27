@@ -6,9 +6,20 @@ use Yii;
 use yii\db\Query;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 class ContactsController extends Controller
 {
+    public function actionJson() {
+        $contacts = Contact::find()->asArray()->all();
+
+        $response = Yii::$app->response;
+        $response->data = $contacts;
+        $response->format = Response::FORMAT_JSON;
+
+        return $response;
+    }
+
     public function actionIndex()
     {
         $company = Company::find()->where(1)->joinWith('contacts')->one();
