@@ -5,6 +5,7 @@ use frontend\models\Contact;
 use Yii;
 use yii\db\Query;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class ContactsController extends Controller
 {
@@ -16,5 +17,16 @@ class ContactsController extends Controller
         foreach ($contacts as $contact) {
             echo $contact->name, $contact->phone, $contact->company->name;
         }
+    }
+
+    public function actionShow($id)
+    {
+        $contact = Contact::findOne($id);
+
+        if (!$contact) {
+            throw new NotFoundHttpException("Контакт с ID $id не найден");
+        }
+
+        return $this->render('view', ['contact' => $contact]);
     }
 }
