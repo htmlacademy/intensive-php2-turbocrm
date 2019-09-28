@@ -11,14 +11,21 @@ class User extends ActiveRecord
             'phone' => 'Номер телефона',
             'company' => 'Название компании',
             'password' => 'Пароль',
-            'password_retype' => 'Повтор пароля',
+            'password_repeat' => 'Повтор пароля',
         ];
     }
 
     public function rules()
     {
         return [
-            [['company', 'phone', 'email', 'password', 'password_retype'], 'safe']
+            [['company', 'phone', 'email', 'password', 'password_retype'], 'safe'],
+            [['company', 'phone', 'email', 'password', 'password_retype'], 'required'],
+            ['email', 'email'],
+            ['email', 'unique'],
+            ['phone', 'match', 'pattern' => '/^[\d]{11}/i'],
+            ['company', 'string', 'min' => 3],
+            ['password', 'string', 'min' => 8],
+            ['password_retype', 'compare']
         ];
     }
 
