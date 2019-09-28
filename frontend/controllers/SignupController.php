@@ -6,26 +6,19 @@ use yii\web\Controller;
 
 class SignupController extends Controller
 {
-    public function beforeAction($action)
-    {
+    public function actionIndex() {
         $this->layout = 'anon';
 
-        $this->enableCsrfValidation = false;
-        return true;
-    }
-
-    public function actionIndex() {
-        $this->enableCsrfValidation = false;
         $user = new User();
 
         if (Yii::$app->request->getIsPost()) {
             $user->load(Yii::$app->request->post());
 
-            if (!$user->validate()) {
-                $errors = $user->getErrors();
+            if ($user->validate()) {
+                // выполнить сохранение формы в БД
             }
         }
 
-        return $this->render('index');
+        return $this->render('index', ['model' => $user]);
     }
 }
