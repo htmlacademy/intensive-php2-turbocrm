@@ -24,7 +24,8 @@ class User extends ActiveRecord
             [['company', 'phone', 'email', 'password', 'password_repeat'], 'required'],
             ['email', 'email'],
             ['email', 'unique'],
-            ['phone', 'match', 'pattern' => '/^[\d]{11}/i'],
+            ['phone', 'match', 'pattern' => '/^[\d]{11}/i',
+                'message' => 'Номер телефона должен состоять из 11 цифр'],
             ['company', 'string', 'min' => 3],
             ['password', 'string', 'min' => 8],
             ['password', 'compare']
