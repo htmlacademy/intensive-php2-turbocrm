@@ -8,6 +8,8 @@ class SignupController extends Controller
 {
     public function beforeAction($action)
     {
+        $this->layout = 'anon';
+
         $this->enableCsrfValidation = false;
         return true;
     }
@@ -21,11 +23,9 @@ class SignupController extends Controller
 
             if (!$user->validate()) {
                 $errors = $user->getErrors();
-
-                var_dump($errors);
-                die;
             }
         }
-    }
 
+        return $this->render('index');
+    }
 }

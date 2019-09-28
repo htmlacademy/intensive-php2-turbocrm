@@ -1,0 +1,3 @@
+<div class="registration">
+
+</div>
