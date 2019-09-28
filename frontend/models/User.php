@@ -4,6 +4,8 @@ use yii\db\ActiveRecord;
 
 class User extends ActiveRecord
 {
+    public $password_repeat;
+
     public function attributeLabels()
     {
         return [
@@ -18,14 +20,14 @@ class User extends ActiveRecord
     public function rules()
     {
         return [
-            [['company', 'phone', 'email', 'password', 'password_retype'], 'safe'],
-            [['company', 'phone', 'email', 'password', 'password_retype'], 'required'],
+            [['company', 'phone', 'email', 'password', 'password_repeat'], 'safe'],
+            [['company', 'phone', 'email', 'password', 'password_repeat'], 'required'],
             ['email', 'email'],
             ['email', 'unique'],
             ['phone', 'match', 'pattern' => '/^[\d]{11}/i'],
             ['company', 'string', 'min' => 3],
             ['password', 'string', 'min' => 8],
-            ['password_retype', 'compare']
+            ['password', 'compare']
         ];
     }
 
