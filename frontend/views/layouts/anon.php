@@ -1,7 +1,10 @@
 <?php
 /* @var $content string */
 
+use frontend\assets\AppAsset;
 use yii\helpers\Html;
+AppAsset::register($this);
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -54,5 +57,6 @@ use yii\helpers\Html;
    </div>
 </div>
 <script src="/js/main.js"></script>
+<?php $this->endBody() ?>
 </body>
 </html>

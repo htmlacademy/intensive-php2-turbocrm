@@ -3,6 +3,7 @@ namespace frontend\controllers;
 use frontend\models\User;
 use Yii;
 use yii\web\Controller;
+use yii\widgets\ActiveForm;
 
 class SignupController extends Controller
 {
@@ -13,6 +14,10 @@ class SignupController extends Controller
 
         if (Yii::$app->request->getIsPost()) {
             $user->load(Yii::$app->request->post());
+
+            if (Yii::$app->request->isAjax) {
+                return ActiveForm::validate($user);
+            }
 
             if ($user->validate()) {
                 // выполнить сохранение формы в БД

@@ -5,7 +5,8 @@ use yii\widgets\ActiveForm;
 use yii\widgets\ActiveField; ?>
 
 <div class="registration">
-   <?php ActiveForm::begin(['id' => 'signup-form', 'options' => ['class' => 'registration__form']]); ?>
+   <?php ActiveForm::begin(['id' => 'signup-form', 'enableAjaxValidation' => true,
+       'options' => ['class' => 'registration__form']]); ?>
    <p class="registration__title header-1">Регистрация</p>
 
    <?php foreach ($model->attributeLabels() as $attr => $label): ?>
