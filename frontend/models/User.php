@@ -1,10 +1,36 @@
 <?php
 namespace frontend\models;
 use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 
-class User extends ActiveRecord
+class User extends ActiveRecord implements IdentityInterface
 {
     public $password_repeat;
+
+    public static function findIdentity($id)
+    {
+        return self::findOne($id);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        // TODO: Implement findIdentityByAccessToken() method.
+    }
+
+    public function getId()
+    {
+        return $this->getPrimaryKey();
+    }
+
+    public function getAuthKey()
+    {
+        // TODO: Implement getAuthKey() method.
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        // TODO: Implement validateAuthKey() method.
+    }
 
     public function attributeLabels()
     {
