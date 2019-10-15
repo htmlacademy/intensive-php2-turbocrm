@@ -14,6 +14,7 @@ class LoginForm extends Model
     {
         return [
             [['email', 'password'], 'required'],
+            [['email', 'password'], 'safe'],
             ['password', 'validatePassword'],
         ];
     }
@@ -28,7 +29,7 @@ class LoginForm extends Model
         }
     }
 
-    protected function getUser()
+    public function getUser()
     {
         if ($this->_user === null) {
             $this->_user = User::findOne(['email' => $this->email]);
