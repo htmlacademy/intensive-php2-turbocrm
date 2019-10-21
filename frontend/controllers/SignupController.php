@@ -2,11 +2,29 @@
 namespace frontend\controllers;
 use frontend\models\User;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\widgets\ActiveForm;
 
 class SignupController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['index'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index'],
+                        'roles' => ['?']
+                    ]
+                ]
+            ]
+        ];
+    }
+
     public function actionIndex() {
         $this->layout = 'anon';
 
