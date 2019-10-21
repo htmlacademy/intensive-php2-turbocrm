@@ -19,9 +19,9 @@ class ContactsController extends Controller
                 'only' => ['update'],
                 'rules' => [
                     [
-                        'allow' => false,
+                        'allow' => true,
                         'actions' => ['update'],
-                        'roles' => ['?']
+                        'roles' => ['@']
                     ]
                 ]
             ]
