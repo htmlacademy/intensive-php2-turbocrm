@@ -38,7 +38,10 @@ class SignupController extends Controller
             }
 
             if ($user->validate()) {
-                // выполнить сохранение формы в БД
+                $user->password = Yii::$app->security->generatePasswordHash($user->password);
+
+                $user->save(false);
+                $this->goHome();
             }
         }
 
