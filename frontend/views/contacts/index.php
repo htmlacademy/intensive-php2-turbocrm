@@ -6,7 +6,7 @@ use yii\grid\GridView;
 <h1>Контакты</h1>
 
 <div class="contacts-section__content">
-    <?=GridView::widget(['dataProvider' => $dataProvider, 'columns' => [
+    <?=GridView::widget(['dataProvider' => $dataProvider, 'filterModel' => $model, 'columns' => [
         ['class' => 'yii\grid\CheckboxColumn'],
         ['attribute' => 'name'],
         ['attribute' => 'company.name', 'label' => 'Компания'],

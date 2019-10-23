@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 use frontend\models\Company;
 use frontend\models\Contact;
+use frontend\models\SearchContact;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
@@ -40,13 +41,15 @@ class ContactsController extends SecuredController
 
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Contact::find(),
+        $searchContact = new SearchContact();
+        $dataProvider = $searchContact->search(Yii::$app->request->get());
+
+        $dataProvider = Yii::configure($dataProvider, [
             'pagination' => ['pageSize' => 2],
             'sort' => ['defaultOrder' => ['id' => SORT_DESC]]
         ]);
 
-        return $this->render('index', ['dataProvider' => $dataProvider]);
+        return $this->render('index', ['dataProvider' => $dataProvider, 'model' => $searchContact]);
     }
 
     public function actionUpdate($id)
