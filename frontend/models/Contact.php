@@ -11,7 +11,8 @@ class Contact extends ActiveRecord
             'name' => 'Имя',
             'phone' => 'Телефон',
             'email' => 'Электронная почта',
-            'position' => 'Должность'
+            'position' => 'Должность',
+            'dt_add' => 'Дата добавления',
         ];
     }
 
