@@ -42,7 +42,7 @@ class ContactsController extends SecuredController
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Contact::find(),
-            'pagination' => ['pageSize' => 5],
+            'pagination' => ['pageSize' => 2],
             'sort' => ['defaultOrder' => ['id' => SORT_DESC]]
         ]);
 
