@@ -1,5 +1,6 @@
 <?php
 namespace frontend\models;
+use frontend\validators\RemoteEmailValidator;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
@@ -55,6 +56,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['company', 'phone', 'email', 'password', 'password_repeat'], 'required'],
             ['email', 'email'],
             ['email', 'unique'],
+            ['email', RemoteEmailValidator::class],
             ['phone', 'match', 'pattern' => '/^[\d]{11}/i',
                 'message' => 'Номер телефона должен состоять из 11 цифр'],
             ['company', 'string', 'min' => 3],
