@@ -15,6 +15,7 @@ return [
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 'persons' => 'contacts/index',
                 'contacts/status/<status:\w+>' => 'contacts/filter',
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/contacts']
             ]
         ],
         'cache' => [
