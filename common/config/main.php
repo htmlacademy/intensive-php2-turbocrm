@@ -12,10 +12,10 @@ return [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/contacts'],
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 'persons' => 'contacts/index',
-                'contacts/status/<status:\w+>' => 'contacts/filter',
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/contacts']
+                'contacts/status/<status:\w+>' => 'contacts/filter'
             ]
         ],
         'cache' => [
