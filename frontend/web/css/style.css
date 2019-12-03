@@ -4291,3 +4291,12 @@ input:not([type="checkbox"]):not([type="radio"]) {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex; }
+
+.login-contaner .modal__container {
+  margin: 0;
+  padding-top: 0;
+}
+
+.login-contaner .log-in {
+  padding-top: 0;
+}
