@@ -31,4 +31,8 @@ class Contact extends ActiveRecord
     public function getCompany() {
         return $this->hasOne(Company::class, ['id' => 'company_id']);
     }
+
+    public function getStatus() {
+        return $this->hasOne(Status::class, ['id' => 'status_id']);
+    }
 }

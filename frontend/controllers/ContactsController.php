@@ -52,6 +52,15 @@ class ContactsController extends SecuredController
         return $this->render('index', ['dataProvider' => $dataProvider, 'model' => $searchContact]);
     }
 
+    public function actionList()
+    {
+        $this->layout = 'common';
+
+        $contacts = Contact::find()->all();
+
+        return $this->render('list', ['contacts' => $contacts]);
+    }
+
     public function actionUpdate($id)
     {
         $contact = Contact::findOne($id);
