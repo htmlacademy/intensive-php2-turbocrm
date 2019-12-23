@@ -6,6 +6,8 @@ use yii\helpers\Html;
 AppAsset::register($this);
 
 ?>
+<?php $this->beginPage() ?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -60,3 +62,4 @@ AppAsset::register($this);
 <?php $this->endBody() ?>
 </body>
 </html>
+<?php $this->endPage() ?>
