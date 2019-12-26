@@ -20,12 +20,12 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "guzzlehttp/guzzle": "~6.0",
         "ext-json": "*",
-        "yiisoft/yii2-redis": "^2.0"
+        "yiisoft/yii2-redis": "^2.0",
+        "yiisoft/yii2-faker": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
         "yiisoft/yii2-gii": "~2.1.0",
-        "yiisoft/yii2-faker": "~2.0.0",
         "codeception/base": "^2.4.0",
         "phpunit/phpunit": "~5.7.27 || ~6.5.5",
         "codeception/verify": "~0.5.0 || ~1.1.0",
