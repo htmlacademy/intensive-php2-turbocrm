@@ -1,9 +1,9 @@
 <?php
 /* @var $content string */
 
-use frontend\assets\AppAsset;
+use frontend\assets\MainAsset;
 use yii\helpers\Html;
-AppAsset::register($this);
+MainAsset::register($this);
 
 ?>
 <?php $this->beginPage() ?>
@@ -15,10 +15,6 @@ AppAsset::register($this);
    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"/>
    <title><?= Html::encode($this->title) ?></title>
-   <link rel="stylesheet" href="/css/style.css" media="screen"/>
-   <link rel="preload" href="/js/main.js" as="script"/>
-   <link rel="preload" href="/fonts/ptsans.woff2" as="font" crossorigin="anonymous"/>
-   <link rel="preload" href="/fonts/ptsansbold.woff2" as="font" crossorigin="anonymous"/>
     <?php $this->registerCsrfMetaTags() ?>
     <?php $this->head() ?>
 </head>
@@ -58,7 +54,6 @@ AppAsset::register($this);
       </form>
    </div>
 </div>
-<script src="/js/main.js"></script>
 <?php $this->endBody() ?>
 </body>
 </html>
