@@ -21,7 +21,8 @@
         "guzzlehttp/guzzle": "~6.0",
         "ext-json": "*",
         "yiisoft/yii2-redis": "^2.0",
-        "yiisoft/yii2-faker": "^2.0"
+        "yiisoft/yii2-faker": "^2.0",
+        "npm-asset/moment": "^2.24"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

@@ -1,8 +1,14 @@
 <?php
 /* @var $model User */
+/* @var $this View */
 
+use frontend\models\User;
+use yii\web\View;
 use yii\widgets\ActiveForm;
-use yii\widgets\ActiveField; ?>
+use yii\widgets\ActiveField;
+
+$this->registerCssFile('css/sample.css');
+?>
 
 <div class="registration">
    <?php $form = ActiveForm::begin(['id' => 'signup-form', 'enableAjaxValidation' => false,

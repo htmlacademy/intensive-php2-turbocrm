@@ -1,9 +1,6 @@
 <?php
 
-
 namespace frontend\assets;
-
-
 use yii\web\AssetBundle;
 
 class MainAsset extends AssetBundle
@@ -18,4 +15,7 @@ class MainAsset extends AssetBundle
         'js/main.js'
     ];
 
+    public $depends = [
+        'yii\web\JqueryAsset', 'frontend\assets\VendorAsset'
+    ];
 }
