@@ -33,6 +33,6 @@ class Contact extends ActiveRecord
     }
 
     public function getStatus() {
-        return $this->hasOne(Status::class, ['id' => 'status_id']);
+        return $this->hasOne(ContactType::class, ['id' => 'type_id']);
     }
 }

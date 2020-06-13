@@ -58,7 +58,7 @@ class ContactsController extends SecuredController
 
         $contacts = Contact::find()->all();
 
-        return $this->render('list', ['contacts' => $contacts]);
+        return $this->render('list2', ['contacts' => $contacts]);
     }
 
     public function actionUpdate($id)

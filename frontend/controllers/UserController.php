@@ -21,6 +21,7 @@ class UserController extends Controller
             $user = User::findOne($id);
 
             print($user->email);
+            \Yii::getLogger()->log('Это сообщение пойдет в лог', 'info');
         }
     }
 
