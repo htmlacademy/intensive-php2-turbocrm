@@ -1,4 +1,5 @@
 <?php
+
 namespace frontend\models;
 
 use yii\db\ActiveRecord;
@@ -28,11 +29,13 @@ class Contact extends ActiveRecord
         ];
     }
 
-    public function getCompany() {
+    public function getCompany()
+    {
         return $this->hasOne(Company::class, ['id' => 'company_id']);
     }
 
-    public function getStatus() {
+    public function getStatus()
+    {
         return $this->hasOne(ContactType::class, ['id' => 'type_id']);
     }
 }

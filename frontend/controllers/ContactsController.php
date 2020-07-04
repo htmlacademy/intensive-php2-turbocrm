@@ -45,9 +45,12 @@ class ContactsController extends SecuredController
         $dataProvider = $searchContact->search(Yii::$app->request->get());
 
         $dataProvider = Yii::configure($dataProvider, [
-            'pagination' => ['pageSize' => 2],
+            'pagination' => ['pageSize' => 10],
             'sort' => ['defaultOrder' => ['id' => SORT_DESC]]
         ]);
+
+        $dataProvider->getModels();
+
 
         return $this->render('index', ['dataProvider' => $dataProvider, 'model' => $searchContact]);
     }
@@ -58,7 +61,7 @@ class ContactsController extends SecuredController
 
         $contacts = Contact::find()->all();
 
-        return $this->render('list2', ['contacts' => $contacts]);
+        return $this->render('list', ['contacts' => $contacts]);
     }
 
     public function actionUpdate($id)
