@@ -38,4 +38,9 @@ class Contact extends ActiveRecord
     {
         return $this->hasOne(ContactType::class, ['id' => 'type_id']);
     }
+
+    public static function getItemsCountByStatus($status)
+    {
+        return self::find()->joinWith('status s')->where(['s.name' => $status])->count();
+    }
 }

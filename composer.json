@@ -22,7 +22,8 @@
         "ext-json": "*",
         "yiisoft/yii2-redis": "^2.0",
         "yiisoft/yii2-faker": "^2.0",
-        "npm-asset/moment": "^2.24"
+        "npm-asset/moment": "^2.24",
+        "wapmorgan/morphos": "^3.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

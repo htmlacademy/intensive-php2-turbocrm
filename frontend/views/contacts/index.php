@@ -6,6 +6,8 @@ use yii\data\Pagination;
 use yii\grid\DataColumn;
 use yii\grid\GridView;
 use common\widgets\LinkPager;
+use frontend\models\Contact;
+use function morphos\Russian\pluralize;
 
 $this->title = 'Список контактов';
 ?>
@@ -74,7 +76,6 @@ $this->title = 'Список контактов';
             'options' => ['class' => 'data-table'],
             'summary' => '',
             'layout' => "{summary}\n{items}",
-//            'filterModel' => $model,
             'columns' => [
                 ['attribute' => 'name'],
                 ['attribute' => 'company.name', 'label' => 'Компания'],
@@ -93,9 +94,9 @@ $this->title = 'Список контактов';
     </div>
     <div class="contacts-section__footer">
         <ul class="data-summary">
-            <li>648 контакта</li>
-            <li>312 активных</li>
-            <li>15 новых</li>
+            <li><?=pluralize($dataProvider->totalCount, 'контакт'); ?></li>
+            <li><?=pluralize(Contact::getItemsCountByStatus('Активный'), 'активный'); ?></li>
+            <li><?=pluralize(Contact::getItemsCountByStatus('Новый'), 'новый'); ?></li>
         </ul>
     </div>
     <?= $this->render('//modals/_contact_form'); ?>

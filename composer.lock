@@ -4,14 +4,14 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3435facbec11fce94088062e06933058",
+    "content-hash": "902de98f593b4cbefb525ce3e0b38c08",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
             "version": "v3.4.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:twbs/bootstrap.git",
+                "url": "https://github.com/twbs/bootstrap.git",
                 "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
             },
             "dist": {
@@ -32,7 +32,7 @@
             "version": "3.3.11",
             "source": {
                 "type": "git",
-                "url": "git@github.com:RobinHerbots/Inputmask.git",
+                "url": "https://github.com/RobinHerbots/Inputmask.git",
                 "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "dist": {
@@ -53,7 +53,7 @@
             "version": "3.4.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
             },
             "dist": {
@@ -961,6 +961,75 @@
                 "shim"
             ],
             "time": "2019-08-06T08:03:45+00:00"
+        },
+        {
+            "name": "wapmorgan/morphos",
+            "version": "3.2.22",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wapmorgan/Morphos.git",
+                "reference": "6c845a04c6332616afa2c73afd0e103e6ee60b2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wapmorgan/Morphos/zipball/6c845a04c6332616afa2c73afd0e103e6ee60b2d",
+                "reference": "6c845a04c6332616afa2c73afd0e103e6ee60b2d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "ext-readline": "For using interactive version of script"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/English/functions.php",
+                    "src/Russian/functions.php"
+                ],
+                "psr-4": {
+                    "morphos\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sergey Vanyushin",
+                    "email": "wapmorgan@gmail.com",
+                    "role": "developer"
+                }
+            ],
+            "description": "A morphological solution for Russian and English language written completely in PHP. Provides classes to inflect personal names, geographical names, decline and pluralize nouns, generate cardinal and ordinal numerals, spell out money amounts and time.",
+            "homepage": "http://morphos.io",
+            "keywords": [
+                "Numerals",
+                "adjectives",
+                "cardinal",
+                "declension",
+                "english",
+                "geographical names",
+                "human-friendly",
+                "inflection",
+                "language",
+                "money",
+                "morphology",
+                "nouns",
+                "ordinal",
+                "personal names",
+                "pluralization",
+                "russian",
+                "spelling",
+                "time"
+            ],
+            "time": "2020-06-12T23:13:39+00:00"
         },
         {
             "name": "yiisoft/yii2",
