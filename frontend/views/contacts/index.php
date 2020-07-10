@@ -1,12 +1,15 @@
 <?php
 /** @var ActiveDataProvider $dataProvider */
-/** @var $this \yii\web\View */
+/** @var $this View */
+/** @var $searchModel SearchContact */
+
+use frontend\models\SearchContact;
 use yii\data\ActiveDataProvider;
-use yii\data\Pagination;
 use yii\grid\DataColumn;
 use yii\grid\GridView;
 use common\widgets\LinkPager;
 use frontend\models\Contact;
+use yii\web\View;
 use yii\widgets\ActiveForm;
 use function morphos\Russian\pluralize;
 
@@ -23,7 +26,7 @@ $this->title = 'Список контактов';
                     'method' => 'get',
                     'options' => ['class' => 'search-block__form']
                 ]); ?>
-                <?=$form->field($model, 'search', [
+                <?=$form->field($searchModel, 'search', [
                     'template' => "{label}\n{input}",
                     'options' => ['class' => 'search-block__field-wrapper'],
                     'inputOptions' => ['class' => 'search-block__field', 'type' => 'search', 'placeholder' => 'Поиск']])
@@ -48,7 +51,7 @@ $this->title = 'Список контактов';
             </div>
         </div>
     </div>
-    <?= $this->render('//partials/_grid_filter', ['model' => $model]); ?>
+    <?= $this->render('//partials/_grid_filter', ['model' => $searchModel]); ?>
     <div class="contacts-section__content">
         <?=GridView::widget([
             'dataProvider' => $dataProvider,
@@ -78,5 +81,14 @@ $this->title = 'Список контактов';
             <li><?=pluralize(Contact::getItemsCountByStatus('Новый'), 'новый'); ?></li>
         </ul>
     </div>
-    <?= $this->render('//modals/_contact_form'); ?>
+    <?= $this->render('//modals/_contact_form', ['model' => $model]); ?>
+
+    <?php if (Yii::$app->session->hasFlash('contact_create')): ?>
+        <div class="alert">
+            <button class="alert__close button button--icon" type="button">
+                <svg width="24" height="24"><use xlink:href="img/sprite.svg#x-circle"></use></svg>
+            </button>
+            <p class="alert__message">Новый контакт успешно добавлен.</p>
+        </div>
+    <?php endif; ?>
 </section>

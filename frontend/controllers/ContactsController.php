@@ -1,12 +1,11 @@
 <?php
 namespace frontend\controllers;
-use frontend\models\Company;
 use frontend\models\Contact;
 use frontend\models\SearchContact;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 class ContactsController extends SecuredController
 {
@@ -39,6 +38,27 @@ class ContactsController extends SecuredController
         return $response;
     }
 
+    public function actionCreate()
+    {
+        $contact = new Contact();
+        $contact->setScenario('insert');
+
+        if (Yii::$app->request->isAjax && $contact->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($contact);
+        }
+
+        if (Yii::$app->request->isPost) {
+            $contact->load(Yii::$app->request->post());
+
+            if ($contact->save()) {
+                Yii::$app->getSession()->setFlash('contact_create');
+
+                return $this->redirect('/persons');
+            }
+        }
+    }
+
     public function actionIndex()
     {
         $searchContact = new SearchContact();
@@ -51,17 +71,8 @@ class ContactsController extends SecuredController
 
         $dataProvider->getModels();
 
-
-        return $this->render('index', ['dataProvider' => $dataProvider, 'model' => $searchContact]);
-    }
-
-    public function actionList()
-    {
-        $this->layout = 'common';
-
-        $contacts = Contact::find()->all();
-
-        return $this->render('list', ['contacts' => $contacts]);
+        return $this->render('index', ['dataProvider' => $dataProvider, 'searchModel' => $searchContact,
+            'model' => new Contact]);
     }
 
     public function actionUpdate($id)

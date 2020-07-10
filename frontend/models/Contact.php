@@ -19,13 +19,21 @@ class Contact extends ActiveRecord
             'email' => 'Электронная почта',
             'position' => 'Должность',
             'dt_add' => 'Дата добавления',
+            'company_id' => 'Компания',
+            'type_id' => 'Тип',
         ];
     }
 
     public function rules()
     {
         return [
-            [['name', 'phone', 'email', 'position', 'type_id', 'company_id', 'search'], 'safe']
+            [['name', 'phone', 'email', 'position', 'type_id', 'company_id', 'search'], 'safe'],
+            [['name', 'phone', 'email', 'position', 'type_id', 'company_id'], 'required', 'on' => 'insert'],
+            ['company_id', 'exist', 'targetRelation' => 'company'],
+            ['type_id', 'exist', 'targetRelation' => 'status'],
+            [['phone', 'email'], 'unique'],
+            ['phone', 'string', 'length' => 11],
+            ['email', 'email']
         ];
     }
 
