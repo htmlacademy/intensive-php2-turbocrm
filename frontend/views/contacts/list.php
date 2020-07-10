@@ -17,8 +17,8 @@ $this->title = 'Список контактов';
             <div class="search-block">
                 <form class="search-block__form" action="#" method="post">
                     <div class="search-block__field-wrapper"><label class="search-block__label"
-                                                                    for="trade-search-field"><span
-                                    class="visually-hidden">Поле поиска</span>
+                                                                    for="trade-search-field">
+                            <span class="visually-hidden">Поле поиска</span>
                             <svg width="16" height="16">
                                 <use xlink:href="/img/sprite.svg#zoom"></use>
                             </svg>

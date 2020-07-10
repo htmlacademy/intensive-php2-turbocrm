@@ -7,6 +7,7 @@ use yii\grid\DataColumn;
 use yii\grid\GridView;
 use common\widgets\LinkPager;
 use frontend\models\Contact;
+use yii\widgets\ActiveForm;
 use function morphos\Russian\pluralize;
 
 $this->title = 'Список контактов';
@@ -18,18 +19,17 @@ $this->title = 'Список контактов';
                 href="#">Фильтровать</a><a class="button button--tiny contacts-section__btn modal-open" href="#">Добавить</a>
         <div class="contacts-section__search">
             <div class="search-block">
-                <form class="search-block__form" action="#" method="post">
-                    <div class="search-block__field-wrapper"><label class="search-block__label"
-                                                                    for="trade-search-field"><span
-                                    class="visually-hidden">Поле поиска</span>
-                            <svg width="16" height="16">
-                                <use xlink:href="/img/sprite.svg#zoom"></use>
-                            </svg>
-                        </label><input class="search-block__field" id="trade-search-field" type="search"
-                                       placeholder="Поиск">
-                        <button class="visually-hidden" type="submit">Найти</button>
-                    </div>
-                </form>
+                <?php $form = ActiveForm::begin([
+                    'method' => 'get',
+                    'options' => ['class' => 'search-block__form']
+                ]); ?>
+                <?=$form->field($model, 'search', [
+                    'template' => "{label}\n{input}",
+                    'options' => ['class' => 'search-block__field-wrapper'],
+                    'inputOptions' => ['class' => 'search-block__field', 'type' => 'search', 'placeholder' => 'Поиск']])
+                    ->label('<span class="visually-hidden">Поле поиска</span>', ['class' => 'search-block__label']); ?>
+                <button class="visually-hidden" type="submit">Найти</button>
+                <?php ActiveForm::end(); ?>
             </div>
         </div>
         <div class="contacts-section__pagination-block-wrapper"><a
