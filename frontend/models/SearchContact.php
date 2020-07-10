@@ -16,6 +16,8 @@ class SearchContact extends Contact
 
             $query->andFilterWhere(['email' => $this->email]);
             $query->andFilterWhere(['position' => $this->position]);
+            $query->andFilterWhere(['type_id' => $this->type_id]);
+            $query->andFilterWhere(['company_id' => $this->company_id]);
         }
 
         return $dataProvider;

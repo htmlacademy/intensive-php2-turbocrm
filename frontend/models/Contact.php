@@ -25,7 +25,7 @@ class Contact extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'phone', 'email', 'position'], 'safe']
+            [['name', 'phone', 'email', 'position', 'type_id', 'company_id'], 'safe']
         ];
     }
 

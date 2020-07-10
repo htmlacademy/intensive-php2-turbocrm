@@ -48,28 +48,7 @@ $this->title = 'Список контактов';
             </div>
         </div>
     </div>
-    <div class="contacts-section__filters js-filters">
-        <div class="filters-block">
-            <form class="filters-block__form" action="#" method="post">
-                <div class="filters-block__field field field--select field--small"><label class="field__label"
-                                                                                          for="status-selection">Cтатус</label><select
-                            class="field__select select" id="status-selection">
-                        <option value="0" placeholder>Новый</option>
-                        <option value="1">Не новый</option>
-                    </select></div>
-                <div class="filters-block__field field field--select"><select class="field__select select">
-                        <option value="0" placeholder>Компания</option>
-                        <option value="1">Не компания</option>
-                    </select></div>
-                <button class="filters-block__btn button button--normal" type="submit">Применить</button>
-            </form>
-            <button class="filters-block__close button button--icon js-filters-toggler" type="button">
-                <svg width="24" height="24">
-                    <use xlink:href="/img/sprite.svg#x-circle"></use>
-                </svg>
-            </button>
-        </div>
-    </div>
+    <?= $this->render('//partials/_grid_filter', ['model' => $model]); ?>
     <div class="contacts-section__content">
         <?=GridView::widget([
             'dataProvider' => $dataProvider,
