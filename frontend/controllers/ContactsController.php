@@ -1,11 +1,7 @@
 <?php
 namespace frontend\controllers;
 use frontend\models\Contact;
-use frontend\models\SearchContact;
 use Yii;
-use yii\web\NotFoundHttpException;
-use yii\web\Response;
-use yii\widgets\ActiveForm;
 
 class ContactsController extends TableController
 {

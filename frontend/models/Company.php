@@ -1,9 +1,35 @@
 <?php
 namespace frontend\models;
+use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 
 class Company extends ActiveRecord
 {
+    public $search;
+
+    public function search($params)
+    {
+        $query = self::find();
+        $dataProvider = new ActiveDataProvider(['query' => $query]);
+
+        if ($params) {
+            $this->load($params);
+
+            if ($this->search) {
+                $query->orWhere(['like', 'email', $this->search]);
+                $query->orWhere(['like', 'name', $this->search]);
+                $query->orWhere(['like', 'phone', $this->search]);
+            }
+        }
+
+        return $dataProvider;
+    }
+
+    public static function tableName()
+    {
+        return "company";
+    }
+
     public function attributeLabels()
     {
         return [
@@ -13,6 +39,17 @@ class Company extends ActiveRecord
             'phone' => 'Рабочий телефон',
             'url' => 'Сайт',
             'ogrn' => 'ОГРН'
+        ];
+    }
+
+    public function rules()
+    {
+        return [
+            [['name', 'phone', 'email', 'address', 'url'], 'safe'],
+            [['name', 'phone', 'email', 'address', 'url'], 'required', 'on' => 'insert'],
+            [['phone', 'email', 'url'], 'unique'],
+            ['phone', 'string', 'length' => 11],
+            ['email', 'email']
         ];
     }
 

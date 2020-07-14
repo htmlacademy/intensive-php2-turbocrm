@@ -2,18 +2,25 @@
 /** @var ActiveDataProvider $dataProvider */
 /** @var $this View */
 /** @var $model Contact */
+/** @var $name string */
+/** @var $showFilterBtn boolean */
 
 use common\widgets\LinkPager;
-
+use frontend\models\Contact;
+use yii\data\ActiveDataProvider;
+use yii\web\View;
+use yii\widgets\ActiveForm;
 ?>
 
 <div class="contacts-section__header">
-    <h1 class="contacts-section__headline">Контакты</h1>
+    <h1 class="contacts-section__headline"><?=$name; ?></h1>
+    <?php if ($showFilterBtn): ?>
     <a class="button button--tiny button--gray contacts-section__btn js-filters-toggler" href="#">Фильтровать</a>
+    <?php endif; ?>
     <a class="button button--tiny contacts-section__btn modal-open" href="#">Добавить</a>
     <div class="contacts-section__search">
         <div class="search-block">
-            <?php use frontend\models\Contact;use yii\data\ActiveDataProvider;use yii\web\View;use yii\widgets\ActiveForm;
+            <?php
 
             $form = ActiveForm::begin([
                 'method' => 'get',
