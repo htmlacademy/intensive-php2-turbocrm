@@ -3,6 +3,7 @@
 /** @var $this View */
 /** @var $model Contact */
 
+use frontend\widgets\Notification;
 use yii\data\ActiveDataProvider;
 use yii\grid\DataColumn;
 use yii\grid\GridView;
@@ -45,13 +46,8 @@ $this->title = 'Список контактов';
         </ul>
     </div>
     <?= $this->render('//modals/_contact_form', ['model' => $model]); ?>
-
-    <?php if (Yii::$app->session->hasFlash('contact_create')): ?>
-        <div class="alert">
-            <button class="alert__close button button--icon" type="button">
-                <svg width="24" height="24"><use xlink:href="img/sprite.svg#x-circle"></use></svg>
-            </button>
-            <p class="alert__message">Новый контакт успешно добавлен.</p>
-        </div>
-    <?php endif; ?>
+    <?= Notification::widget([
+        'flashName' => 'contact_create',
+        'title' => 'Новый контакт успешно добавлен.'
+    ]); ?>
 </section>
