@@ -52,6 +52,6 @@ class TableController extends SecuredController
 
         $dataProvider->getModels();
 
-        return $this->render('index', ['dataProvider' => $dataProvider, 'model' => new Contact]);
+        return $this->render('index', ['dataProvider' => $dataProvider, 'model' => $model]);
     }
 }

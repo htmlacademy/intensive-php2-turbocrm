@@ -20,7 +20,6 @@ $this->title = 'Список компаний';
     <?= $this->render('//partials/_grid_header', [
         'model' => $model, 'dataProvider' => $dataProvider, 'name' => 'Компании', 'showFilterBtn' => false
     ]); ?>
-    <?= $this->render('//partials/_grid_filter', ['model' => $model]); ?>
     <div class="contacts-section__content">
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
@@ -47,7 +46,7 @@ $this->title = 'Список компаний';
             <li><?= pluralize($dataProvider->totalCount, 'компания'); ?></li>
         </ul>
     </div>
-    <?= $this->render('//modals/_contact_form', ['model' => $model]); ?>
+    <?= $this->render('//modals/_company_form', ['model' => $model]); ?>
     <?= Notification::widget([
         'flashName' => 'companies_create',
         'title' => 'Новая компания успешно добавлена.'
