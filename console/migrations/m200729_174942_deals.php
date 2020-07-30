@@ -22,7 +22,7 @@ class m200729_174942_deals extends Migration
             'due_date' => $this->date(),
             'description' => $this->text(),
             'budget_amount' => $this->integer(),
-            'dt_create' => $this->dateTime()
+            'dt_add' => $this->dateTime()->defaultValue(new \yii\db\Expression('NOW()'))
         ]);
 
         $this->createTable('deal_status', [
