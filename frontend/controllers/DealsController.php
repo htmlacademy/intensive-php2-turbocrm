@@ -1,29 +1,16 @@
 <?php
+
 namespace frontend\controllers;
-use frontend\models\Company;
-use frontend\models\Contact;
-use frontend\models\Deal;
-use yii\web\Controller;
 
-class DealsController extends Controller
+use frontend\models\DealStatus;
+
+class DealsController extends \frontend\controllers\SecuredController
 {
-
     public function actionIndex()
     {
-        $contact_data = [
-            'name' => 'Савченко Юлия',
-            'phone' => '78551469725',
-            'position' => 'Менеджер',
-            'email' => 'yula@bk.ru'
-        ];
+        $dealStatuses = DealStatus::find()->all();
 
-        $contact = new Contact();
-        $contact->attributes = $contact_data;
-        $contact->save();
-
-        $company = Company::findOne(1);
-
-        // привязывает контакт к компании
-        $contact->link('company', $company);
+        return $this->render('index', ['statuses' => $dealStatuses]);
     }
+
 }

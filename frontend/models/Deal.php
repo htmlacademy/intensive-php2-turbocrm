@@ -60,4 +60,9 @@ class Deal extends \yii\db\ActiveRecord
             'dt_create' => 'Dt Create',
         ];
     }
+
+    public function getCompany()
+    {
+        return $this->hasOne(Company::class, ['id' => 'company_id']);
+    }
 }
