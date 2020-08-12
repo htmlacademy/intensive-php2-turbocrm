@@ -2,7 +2,10 @@
 /** @var ActiveDataProvider $dataProvider */
 
 use frontend\models\Contact;
-use frontend\models\DealStatus;use yii\data\ActiveDataProvider;
+use frontend\models\Deal;
+use frontend\models\DealStatus;
+use frontend\widgets\Notification;
+use yii\data\ActiveDataProvider;
 use yii\web\View;
 use function morphos\Russian\pluralize;
 
@@ -58,4 +61,9 @@ $this->title = 'Сделки';
         </div>
         <?php endforeach; ?>
     </div>
+    <?= $this->render('//modals/_deal_form', ['model' => new Deal]); ?>
+    <?= Notification::widget([
+        'flashName' => 'deals_create',
+        'title' => 'Новая сделка успешно добавлена.'
+    ]); ?>
 </section>

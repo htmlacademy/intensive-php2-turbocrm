@@ -2396,10 +2396,10 @@
       }, function (e, t, i) {
         /*!
          * Fuse.js v3.4.2 - Lightweight fuzzy-search (http://fusejs.io)
-         * 
+         *
          * Copyright (c) 2012-2017 Kirollos Risk (http://kiro.me)
          * All Rights Reserved. Apache Software License 2.0
-         * 
+         *
          * http://www.apache.org/licenses/LICENSE-2.0
          */
         var n;
@@ -5197,7 +5197,7 @@
         timeMinutes: false,
         timeSeconds: false,
         timeFormat: '',
-        dateFormat: 'dd-mm-YYYY',
+        dateFormat: 'YYYY-mm-dd',
         locale: 'ru'
       });
     });
@@ -5454,7 +5454,7 @@
           timeMinutes: false,
           timeSeconds: false,
           timeFormat: '',
-          dateFormat: 'dd-mm-YYYY',
+          dateFormat: 'YYYY-mm-dd',
           locale: 'ru' // Keeps the Calendar Popup Open
 
         });

@@ -34,10 +34,10 @@ class Deal extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['company_id'], 'required'],
+            [['company_id', 'status_id', 'contact_id', 'executor_id', 'budget_amount', 'name', 'description'], 'required', 'on' => 'insert'],
+            [['company_id', 'status_id', 'contact_id', 'executor_id', 'budget_amount', 'name', 'description'], 'safe'],
             [['company_id', 'status_id', 'contact_id', 'executor_id', 'budget_amount'], 'integer'],
-            [['due_date', 'dt_create'], 'safe'],
-            [['description'], 'string'],
+            [['description', 'name'], 'string'],
             [['name'], 'string', 'max' => 255],
         ];
     }
@@ -49,15 +49,15 @@ class Deal extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'company_id' => 'Company ID',
-            'status_id' => 'Status ID',
-            'contact_id' => 'Contact ID',
-            'executor_id' => 'Executor ID',
-            'due_date' => 'Due Date',
-            'description' => 'Description',
-            'budget_amount' => 'Budget Amount',
-            'dt_create' => 'Dt Create',
+            'name' => 'Название',
+            'company_id' => 'Компания',
+            'status_id' => 'Этап',
+            'contact_id' => 'Контакт',
+            'executor_id' => 'Исполнитель',
+            'due_date' => 'Дата исполнения',
+            'description' => 'Описание',
+            'budget_amount' => 'Стоимость работ',
+            'dt_create' => 'Дата создания',
         ];
     }
 
