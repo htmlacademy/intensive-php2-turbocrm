@@ -65,4 +65,9 @@ class Deal extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Company::class, ['id' => 'company_id']);
     }
+
+    public function getStatus()
+    {
+        return $this->hasOne(DealStatus::class, ['id' => 'status_id']);
+    }
 }

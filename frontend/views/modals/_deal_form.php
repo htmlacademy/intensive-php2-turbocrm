@@ -3,6 +3,8 @@ use frontend\models\Company;
 use frontend\models\Contact;
 use frontend\models\DealStatus;
 use frontend\models\User;
+use yii\helpers\ArrayHelper;
+use yii\widgets\ActiveForm;
 
 $companies = Company::find()->all();
 $contacts  = Contact::find()->all();
@@ -14,11 +16,6 @@ $users     = User::find()->all();
     <div class="modal__container">
         <button class="button button--tiny button--gray modal__close" type="button"><span>&lt; Отмена</span></button>
         <?php
-
-
-        use yii\helpers\ArrayHelper;
-        use yii\widgets\ActiveForm;
-
         $form = ActiveForm::begin([
             'method' => 'post', 'action' => 'deals/create', 'id' => 'deal-create-form',
             'enableAjaxValidation' => true,
