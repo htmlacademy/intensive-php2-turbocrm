@@ -17,6 +17,10 @@ use yii\web\View;
     <div class="event__message-wrap"><b class="event__author"><?=$model->user->email; ?></b>
         <?php switch ($model->type): ?><?php case Feed::TYPE_NEW: ?>
         <span class="event__text">создал сделку, статус</span><span class="label label--new">Новая</span>
+        <?php break; ?>
+        <?php case Feed::TYPE_NOTE: ?>
+            <span class="event__text">оставил заметку</span>
+            <p class="event__message"><?=$model->getAssociatedContent()->content ?? null; ?></p>
         <?php endswitch; ?>
     </div>
 </li>

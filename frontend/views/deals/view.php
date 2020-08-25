@@ -229,56 +229,6 @@ $contacts  = Contact::find()->all();
                 <?php foreach ($model->getFeedItems() as $feedItem): ?>
                     <?= FeedItem::widget(['model' => $feedItem]); ?>
                 <?php endforeach; ?>
-                <li class="deal-log__item event">
-                    <p class="event__data-block"><span class="event__data">1 апр</span><time class="event__time">15:02</time></p>
-                    <div class="avatar event__avatar"><span>К</span></div>
-                    <div class="event__message-wrap"><b class="event__author">Фёдор Котов</b><span class="event__text">создал сделку, статус</span><span class="label label--new">Новая</span></div>
-                </li>
-                <li class="deal-log__item event">
-                    <p class="event__data-block"><span class="event__data">1 апр</span><time class="event__time">15:12</time></p>
-                    <div class="avatar event__avatar"><span>К</span></div>
-                    <div class="event__message-wrap"><b class="event__author">Фёдор Котов</b><span class="event__text">оставил заметку</span>
-                        <p class="event__message">В этой истории я хотел бы попросить вас создать стиль для одного из наших клиентов. Он хочет улучшить существующий стиль, но это зависит от вас, если вы хотите полностью изменить его дизайн (просто не тратьте слишком много времени).</p>
-                    </div>
-                </li>
-                <li class="deal-log__item event">
-                    <p class="event__data-block"><span class="event__data">2 апр</span><time class="event__time">09:32</time></p>
-                    <div class="avatar event__avatar"><span>К</span></div>
-                    <div class="event__message-wrap"><b class="event__author">Фёдор Котов</b><span class="event__text">назначил отвественного -<b>Олег Иванов</b></span></div>
-                </li>
-                <li class="deal-log__item event">
-                    <p class="event__data-block"><span class="event__data">4 апр</span><time class="event__time">16:33</time></p>
-                    <div class="avatar avatar--red event__avatar"><span>О</span></div>
-                    <div class="event__message-wrap"><b class="event__author">Олег Иванов</b><span class="event__text">оставил заметку</span>
-                        <p class="event__message">Начну работать над этим в следующую пятницу.</p>
-                    </div>
-                </li>
-                <li class="deal-log__item event">
-                    <p class="event__data-block"><span class="event__data">12 апр</span><time class="event__time">10:04</time></p>
-                    <div class="avatar avatar--red event__avatar"><span>О</span></div>
-                    <div class="event__message-wrap"><b class="event__author">Олег Иванов</b><span class="event__text">перевел сделку в новый статус</span><span class="label label--presentation">Презентация</span></div>
-                </li>
-                <li class="deal-log__item event">
-                    <p class="event__data-block"><span class="event__data">12 апр</span><time class="event__time">12:12</time></p>
-                    <div class="avatar avatar--red event__avatar"><span>О</span></div>
-                    <div class="event__message-wrap"><b class="event__author">Олег Иванов</b><span class="event__text">отправил СМС сообщение для клиента<b>Макс Ожегов</b></span>
-                        <p class="event__message event__message-sms">Мы хотели бы представить вам наш подход. Как насчет следующей недели 15-го в 12:00?</p>
-                    </div>
-                </li>
-                <li class="deal-log__item event">
-                    <p class="event__data-block"><span class="event__data">17 апр</span><time class="event__time">16:33</time></p>
-                    <div class="avatar avatar--red event__avatar"><span>О</span></div>
-                    <div class="event__message-wrap"><b class="event__author">Олег Иванов</b><span class="event__text">оставил заметку</span>
-                        <p class="event__message">Начну работать над этим в следующую пятницу.</p>
-                    </div>
-                </li>
-                <li class="deal-log__item event">
-                    <p class="event__data-block"><span class="event__data">17 апр</span><time class="event__time">16:33</time></p>
-                    <div class="avatar avatar--red event__avatar"><span>О</span></div>
-                    <div class="event__message-wrap"><b class="event__author">Олег Иванов</b><span class="event__text">оставил заметку</span>
-                        <p class="event__message">Начну работать над этим в следующую пятницу.</p>
-                    </div>
-                </li>
             </ul>
         </div>
         <div class="message-panel deal-log__message-panel">

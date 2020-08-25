@@ -74,7 +74,7 @@ class Deal extends \yii\db\ActiveRecord
             'dt_add' => $this->dt_add
         ]);
 
-        return [$firstItem];
+        return array_merge([$firstItem], $this->feed);
     }
 
     public function getOwner()
@@ -94,6 +94,6 @@ class Deal extends \yii\db\ActiveRecord
 
     public function getFeed()
     {
-        return $this->hasMany(Feed::class, ['deal_id' => 'id']);
+        return $this->hasMany(Feed::class, ['deal_id' => 'id'])->orderBy('dt_add ASC');
     }
 }

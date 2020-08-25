@@ -24,7 +24,6 @@ class Feed extends ActiveRecord
     const TYPE_NOTE = 'note';
     const TYPE_EXECUTOR = 'executor';
 
-
     /**
      * {@inheritdoc}
      */
@@ -73,6 +72,17 @@ class Feed extends ActiveRecord
     public function getDeal()
     {
         return $this->hasOne(Deal::class, ['id' => 'deal_id']);
+    }
 
+    public function getAssociatedContent()
+    {
+        switch ($this->type) {
+            case self::TYPE_NOTE:
+                return Note::findOne($this->value);
+            case self::TYPE_STATUS:
+                return DealStatus::findOne($this->value);
+        }
+
+        return null;
     }
 }
