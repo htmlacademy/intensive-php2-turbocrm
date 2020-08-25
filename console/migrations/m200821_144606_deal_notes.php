@@ -13,7 +13,7 @@ class m200821_144606_deal_notes extends Migration
      */
     public function up()
     {
-        $this->createTable('deal_notes', [
+        $this->createTable('note', [
             'id' => $this->primaryKey(),
             'deal_id' => $this->integer()->notNull(),
             'dt_add' => $this->dateTime()->defaultValue(new Expression('NOW()')),
@@ -21,8 +21,8 @@ class m200821_144606_deal_notes extends Migration
             'content' => $this->text()
         ]);
 
-        $this->addForeignKey('user_note', 'deal_notes', 'user_id', 'user', 'id');
-        $this->addForeignKey('deal_note', 'deal_notes', 'deal_id', 'deal', 'id');
+        $this->addForeignKey('user_note', 'note', 'user_id', 'user', 'id');
+        $this->addForeignKey('deal_note', 'note', 'deal_id', 'deal', 'id');
     }
 
     /**

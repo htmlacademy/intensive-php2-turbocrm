@@ -16,14 +16,14 @@ use Yii;
  * @property Deal $deal
  * @property User $user
  */
-class DealNote extends \yii\db\ActiveRecord
+class Note extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'deal_notes';
+        return 'note';
     }
 
     /**

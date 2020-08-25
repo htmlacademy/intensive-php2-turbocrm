@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "feed".
@@ -15,7 +16,7 @@ use Yii;
  *
  * @property User $user
  */
-class Feed extends \yii\db\ActiveRecord
+class Feed extends ActiveRecord
 {
     /**
      * {@inheritdoc}
