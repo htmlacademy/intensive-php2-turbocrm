@@ -18,6 +18,13 @@ use yii\db\ActiveRecord;
  */
 class Feed extends ActiveRecord
 {
+
+    const TYPE_NEW = 'new';
+    const TYPE_STATUS = 'status';
+    const TYPE_NOTE = 'note';
+    const TYPE_EXECUTOR = 'executor';
+
+
     /**
      * {@inheritdoc}
      */
@@ -33,7 +40,7 @@ class Feed extends ActiveRecord
     {
         return [
             [['type', 'user_id', 'value'], 'required'],
-            [['dt_add'], 'safe'],
+            [['dt_add', 'type', 'user_id', 'value', 'deal_id'], 'safe'],
             [['user_id'], 'integer'],
             [['type'], 'string', 'max' => 32],
             [['value'], 'string', 'max' => 1],
@@ -61,5 +68,11 @@ class Feed extends ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function getDeal()
+    {
+        return $this->hasOne(Deal::class, ['id' => 'deal_id']);
+
     }
 }

@@ -13,6 +13,7 @@ use Yii;
  * @property int $status_id
  * @property int $contact_id
  * @property int $executor_id
+ * @property int $user_id
  * @property string $due_date
  * @property string $description
  * @property int $budget_amount
@@ -52,6 +53,7 @@ class Deal extends \yii\db\ActiveRecord
             'name' => 'Название',
             'company_id' => 'Компания',
             'status_id' => 'Этап',
+            'user_id' => 'Создатель',
             'contact_id' => 'Контакт',
             'executor_id' => 'Исполнитель',
             'due_date' => 'Дата исполнения',
@@ -59,6 +61,24 @@ class Deal extends \yii\db\ActiveRecord
             'budget_amount' => 'Стоимость работ',
             'dt_create' => 'Дата создания',
         ];
+    }
+
+    public function getFeedItems()
+    {
+        $firstItem = new Feed();
+        $firstItem->setAttributes([
+            'user_id' => $this->user_id,
+            'type' => Feed::TYPE_NEW,
+            'value' => $this->id,
+            'deal_id' => $this->id
+        ]);
+
+        return [$firstItem];
+    }
+
+    public function getOwner()
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     public function getCompany()
@@ -69,5 +89,10 @@ class Deal extends \yii\db\ActiveRecord
     public function getStatus()
     {
         return $this->hasOne(DealStatus::class, ['id' => 'status_id']);
+    }
+
+    public function getFeed()
+    {
+        return $this->hasMany(Feed::class, ['deal_id' => 'id']);
     }
 }

@@ -18,6 +18,7 @@ class m200825_064858_feed extends Migration
             'type' => $this->char(32)->notNull(),
             'dt_add' => $this->dateTime()->defaultValue(new Expression('NOW()')),
             'user_id' => $this->integer()->notNull(),
+            'deal_id' => $this->integer()->notNull(),
             'value' => $this->char()->notNull()
         ]);
 
