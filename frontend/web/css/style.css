@@ -3759,7 +3759,7 @@ input:not([type="checkbox"]):not([type="radio"]) {
 .event__data-block {
   -ms-flex-negative: 0;
       flex-shrink: 0;
-  width: 71px;
+  width: 100px;
   margin-right: 17px;
   text-align: right; }
 

@@ -5,6 +5,7 @@ use frontend\models\Company;
 use frontend\models\Contact;
 use frontend\models\Deal;
 use frontend\models\User;
+use frontend\widgets\FeedItem;
 use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
 use yii\web\View;
@@ -225,6 +226,9 @@ $contacts  = Contact::find()->all();
             </div>
             <p class="header-3 deal-log__header">События</p>
             <ul class="deal-log__list">
+                <?php foreach ($model->getFeedItems() as $feedItem): ?>
+                    <?= FeedItem::widget(['model' => $feedItem]); ?>
+                <?php endforeach; ?>
                 <li class="deal-log__item event">
                     <p class="event__data-block"><span class="event__data">1 апр</span><time class="event__time">15:02</time></p>
                     <div class="avatar event__avatar"><span>К</span></div>

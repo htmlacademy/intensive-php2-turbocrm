@@ -17,7 +17,7 @@ use Yii;
  * @property string $due_date
  * @property string $description
  * @property int $budget_amount
- * @property string $dt_create
+ * @property string $dt_add
  */
 class Deal extends \yii\db\ActiveRecord
 {
@@ -59,7 +59,7 @@ class Deal extends \yii\db\ActiveRecord
             'due_date' => 'Дата исполнения',
             'description' => 'Описание',
             'budget_amount' => 'Стоимость работ',
-            'dt_create' => 'Дата создания',
+            'dt_add' => 'Дата создания',
         ];
     }
 
@@ -70,7 +70,8 @@ class Deal extends \yii\db\ActiveRecord
             'user_id' => $this->user_id,
             'type' => Feed::TYPE_NEW,
             'value' => $this->id,
-            'deal_id' => $this->id
+            'deal_id' => $this->id,
+            'dt_add' => $this->dt_add
         ]);
 
         return [$firstItem];
