@@ -25,7 +25,7 @@ MainAsset::register($this);
 
 <header class="page-header">
     <div class="page-header__wrapper"><a class="page-header__logo logo" href="#" aria-label="Логотип TurboCRM"><svg width="44" height="45">
-                <use xlink:href="img/sprite.svg#spiral"></use>
+                <use xlink:href="/img/sprite.svg#spiral"></use>
             </svg></a>
         <nav class="page-header__nav main-nav">
             <ul>

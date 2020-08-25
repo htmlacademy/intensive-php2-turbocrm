@@ -48,7 +48,6 @@ $contacts  = Contact::find()->all();
                 <div class="deal-card__tab-controls">
                     <ul class="tab-controls">
                         <li class="js-tab-control active"><button type="button">Основное</button></li>
-                        <li class="js-tab-control"><button type="button">Задачи</button></li>
                         <li class="js-tab-control"><button type="button">Участники</button></li>
                     </ul>
                 </div>
@@ -103,53 +102,6 @@ $contacts  = Contact::find()->all();
                         <?php ActiveForm::end(); ?>
 
                     </div>
-                    <div class="deal-card__tab tab js-tab">
-                        <div class="task"><a class="button button--shadow task__button" href="#"><span>Новая задача</span></a>
-                            <table class="task__table" cellspacing="0">
-                                <tr>
-                                    <th>
-                                        <p>Статус</p>
-                                    </th>
-                                    <th>
-                                        <p>Тип</p>
-                                    </th>
-                                    <th>
-                                        <p>Исполнитель</p>
-                                    </th>
-                                    <th>
-                                        <p>Срок</p>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>В работе</p>
-                                    </td>
-                                    <td>
-                                        <p>Аналитика</p>
-                                    </td>
-                                    <td>
-                                        <p>Анна Михайлова</p>
-                                    </td>
-                                    <td>
-                                        <p>21-05-2019</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>Новая</p>
-                                    </td>
-                                    <td>
-                                        <p>Презентация</p>
-                                    </td>
-                                    <td>
-                                        <p>Евгений Кочергин</p>
-                                    </td>
-                                    <td>
-                                        <p>12-05-2019</p>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
                     </div>
                     <div class="deal-card__tab tab js-tab">
                         <div class="members">
@@ -193,37 +145,6 @@ $contacts  = Contact::find()->all();
     </div>
     <div class="deal-section__log">
         <div class="deal-log">
-            <div class="task-widget"><a class="button button--shadow task-widget__button js-create-task" href="#"><span>Новая задача</span></a>
-                <div class="alert task-widget__container js-task-widget"><button class="alert__close button button--icon task-widget__close-button" type="button"><svg width="24" height="24">
-                            <use xlink:href="img/sprite.svg#x-circle"></use>
-                        </svg></button>
-                    <div class="alert__content"><textarea class="textarea task-widget__textarea" rows="1" placeholder="Описание"></textarea>
-                        <form class="task-widget__form deal-form" method="POST">
-                            <div class="task-widget__type"><select class="select">
-                                    <option value="0" placeholder="placeholder">Тип задачи</option>
-                                    <option value="1">Разработка</option>
-                                    <option value="2">Маркетинг</option>
-                                    <option value="3">Дизайн</option>
-                                    <option value="4">Аналитика</option>
-                                    <option value="5">Копирайтинг</option>
-                                </select></div>
-                            <div class="task-widget__executor"><select class="select">
-                                    <option value="0" placeholder="placeholder">Исполнитель</option>
-                                    <option value="1">Олег Иванов</option>
-                                    <option value="2">Анна Михайлова</option>
-                                    <option value="3">Алиса Федосеева</option>
-                                    <option value="4">Влад Климов</option>
-                                    <option value="5">Михайл Кочетков</option>
-                                    <option value="6">Юрий Пономарев</option>
-                                    <option value="7">Яна Светлова</option>
-                                </select></div>
-                            <div class="task-widget__date-wrapper"><input class="task-widget__input task-widget__input--date deal-form__field--date deal-form__field js-resizable" type="text" readonly="readonly" placeholder="Срок" />
-                                <div class="task-widget__calendar-container"></div>
-                            </div><button class="task-widget__button link" type="submit"><span>Добавить</span></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
             <p class="header-3 deal-log__header">События</p>
             <ul class="deal-log__list">
                 <?php foreach ($model->getFeedItems() as $feedItem): ?>
@@ -233,7 +154,6 @@ $contacts  = Contact::find()->all();
         </div>
         <div class="message-panel deal-log__message-panel">
             <form class="message-panel__form" method="POST"><input class="message-panel__input input" type="text" name="message" placeholder="Сообщение" autocomplete="off" /><button class="message-panel__button button button--rounded-blue" type="submit"><span>Отправить</span></button>
-                <div class="message-panel__options"><a class="message-panel__toggle message-panel__toggle--active" href="#">Заметка</a><a class="message-panel__toggle" href="#">СМС</a><span class="message-panel__length">0 / 500</span></div>
             </form>
         </div>
     </div>
