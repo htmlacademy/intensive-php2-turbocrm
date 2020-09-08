@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use frontend\models\Deal;
 use frontend\models\DealStatus;
+use frontend\models\Note;
 use yii\web\NotFoundHttpException;
 
 class DealsController extends TableController
@@ -23,13 +24,22 @@ class DealsController extends TableController
 
     public function actionView($id)
     {
-        $model = Deal::findOne($id);
+        $deal = Deal::findOne($id);
+        $note = new Note();
 
-        if (!$model) {
+        if (!$deal) {
             throw new NotFoundHttpException("Сделка с этим ID не найдена");
         }
 
-        return $this->render('view', ['model' => $model]);
+        if (\Yii::$app->request->isPost) {
+            $note->load(\Yii::$app->request->post());
+            $note->save();
+
+            $deal->link('notes', $note);
+            $note->content = null;
+        }
+
+        return $this->render('view', ['deal' => $deal, 'note' => $note]);
     }
 
 }

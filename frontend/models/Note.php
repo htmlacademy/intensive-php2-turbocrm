@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
 
 /**
  * This is the model class for table "deal_notes".
@@ -26,15 +27,25 @@ class Note extends \yii\db\ActiveRecord
         return 'note';
     }
 
+    public function behaviors()
+    {
+        return [
+            'blameable' => [
+                'class' => BlameableBehavior::class,
+                'createdByAttribute' => 'user_id', 'updatedByAttribute' => null
+            ]
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['deal_id', 'user_id'], 'required'],
+            [['content', 'deal_id'], 'required'],
             [['deal_id', 'user_id'], 'integer'],
-            [['dt_add'], 'safe'],
+            [['content'], 'safe'],
             [['content'], 'string'],
             [['deal_id'], 'exist', 'skipOnError' => true, 'targetClass' => Deal::className(), 'targetAttribute' => ['deal_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],

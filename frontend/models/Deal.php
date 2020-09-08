@@ -92,6 +92,11 @@ class Deal extends \yii\db\ActiveRecord
         return $this->hasOne(DealStatus::class, ['id' => 'status_id']);
     }
 
+    public function getNotes()
+    {
+        return $this->hasMany(Note::class, ['deal_id' => 'id']);
+    }
+
     public function getFeed()
     {
         return $this->hasMany(Feed::class, ['deal_id' => 'id'])->orderBy('dt_add ASC');
