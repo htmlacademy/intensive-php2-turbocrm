@@ -19,7 +19,7 @@ class m200825_064858_feed extends Migration
             'dt_add' => $this->dateTime()->defaultValue(new Expression('NOW()')),
             'user_id' => $this->integer()->notNull(),
             'deal_id' => $this->integer()->notNull(),
-            'value' => $this->char()->notNull()
+            'value' => $this->char(255)->notNull()
         ]);
 
         $this->addForeignKey('feed_user', 'feed', 'user_id', 'user', 'id');

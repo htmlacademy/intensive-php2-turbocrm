@@ -2,7 +2,9 @@
 
 namespace frontend\models;
 
+use frontend\behaviors\FeedBehavior;
 use Yii;
+use yii\behaviors\BlameableBehavior;
 use yii\db\ActiveRecord;
 
 /**
@@ -32,17 +34,26 @@ class Feed extends ActiveRecord
         return 'feed';
     }
 
+    public function behaviors()
+    {
+        return [
+            'blameable' => [
+                'class' => BlameableBehavior::class,
+                'createdByAttribute' => 'user_id', 'updatedByAttribute' => null
+            ]
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['type', 'user_id', 'value'], 'required'],
+            [['type', 'value'], 'required'],
             [['dt_add', 'type', 'user_id', 'value', 'deal_id'], 'safe'],
             [['user_id'], 'integer'],
             [['type'], 'string', 'max' => 32],
-            [['value'], 'string', 'max' => 1],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }

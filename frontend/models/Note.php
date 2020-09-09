@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use frontend\behaviors\FeedBehavior;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 
@@ -33,6 +34,10 @@ class Note extends \yii\db\ActiveRecord
             'blameable' => [
                 'class' => BlameableBehavior::class,
                 'createdByAttribute' => 'user_id', 'updatedByAttribute' => null
+            ],
+            'feed' => [
+                'class' => FeedBehavior::class,
+                'eventType' => Feed::TYPE_NOTE, 'attrName' => 'content'
             ]
         ];
     }
