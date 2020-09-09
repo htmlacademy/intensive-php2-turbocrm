@@ -2,10 +2,11 @@
 
 namespace frontend\models;
 
+use frontend\interfaces\PersonInterface;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 
-class Contact extends ActiveRecord
+class Contact extends ActiveRecord implements PersonInterface
 {
     public $search;
 
@@ -74,5 +75,20 @@ class Contact extends ActiveRecord
     public static function getItemsCountByStatus($status)
     {
         return self::find()->joinWith('status s')->where(['s.name' => $status])->count();
+    }
+
+    public function getPersonName()
+    {
+        return $this->name;
+    }
+
+    public function getPersonPosition()
+    {
+        return $this->position;
+    }
+
+    public function getPersonCompany()
+    {
+        return $this->company->name;
     }
 }

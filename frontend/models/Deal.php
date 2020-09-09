@@ -2,7 +2,8 @@
 
 namespace frontend\models;
 
-use Yii;
+use frontend\interfaces\PersonInterface;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "deal".
@@ -19,7 +20,7 @@ use Yii;
  * @property int $budget_amount
  * @property string $dt_add
  */
-class Deal extends \yii\db\ActiveRecord
+class Deal extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -82,9 +83,19 @@ class Deal extends \yii\db\ActiveRecord
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
+    public function getExecutor()
+    {
+        return $this->hasOne(User::class, ['id' => 'executor_id']);
+    }
+
     public function getCompany()
     {
         return $this->hasOne(Company::class, ['id' => 'company_id']);
+    }
+
+    public function getContact()
+    {
+        return $this->hasOne(Contact::class, ['id' => 'contact_id']);
     }
 
     public function getStatus()
@@ -100,5 +111,17 @@ class Deal extends \yii\db\ActiveRecord
     public function getFeed()
     {
         return $this->hasMany(Feed::class, ['deal_id' => 'id'])->orderBy('dt_add ASC');
+    }
+
+    /**
+     * @return PersonInterface[]
+     */
+    public function getAllParticipants()
+    {
+        $participants = [
+            $this->contact, $this->executor, $this->owner
+        ];
+
+        return array_filter($participants);
     }
 }

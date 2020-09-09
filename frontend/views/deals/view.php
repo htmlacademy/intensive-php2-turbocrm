@@ -36,7 +36,7 @@ $contacts = Contact::find()->all();
                         <div class="actions-list">
                             <button class="actions-list__toggler button button--icon" type="button">
                                 <svg width="16" height="16">
-                                    <use xlink:href="img/sprite.svg#settings"></use>
+                                    <use xlink:href="/img/sprite.svg#settings"></use>
                                 </svg>
                             </button>
                             <div class="actions-list__dropdown">
@@ -121,54 +121,20 @@ $contacts = Contact::find()->all();
                 </div>
                 <div class="deal-card__tab tab js-tab">
                     <div class="members">
+                        <?php foreach ($deal->getAllParticipants() as $person): ?>
                         <div class="contact members__contact">
                             <div class="avatar avatar--contact contact__avatar"><span>O</span></div>
-                            <div class="contact__inner"><a class="contact__name" href="#">Олег Иванов</a>
-                                <p class="contact__last-connection">Последний контакт 2 ч. назад</p>
+                            <div class="contact__inner"><a class="contact__name" href="#"><?=$person->getPersonName(); ?></a>
                                 <p class="contact__row contact__row--company"><span
                                             class="contact__title">Компания:</span><a class="contact__value link"
-                                                                                      href="#">ПАО Газпром</a></p>
+                                                                                      href="#"><?=$person->getPersonCompany(); ?></a></p>
                                 <p class="contact__row contact__row--position"><span
-                                            class="contact__title">Должность:</span><span class="contact__value">Менеджер</span>
+                                            class="contact__title">Должность:</span>
+                                    <span class="contact__value"><?=$person->getPersonPosition(); ?></span>
                                 </p>
                             </div>
                         </div>
-                        <div class="contact members__contact">
-                            <div class="avatar avatar--contact avatar--blue contact__avatar"><span>А</span></div>
-                            <div class="contact__inner"><a class="contact__name" href="#">Арсений Петров</a>
-                                <p class="contact__last-connection">Последний контакт 1 д. назад</p>
-                                <p class="contact__row contact__row--company"><span
-                                            class="contact__title">Компания:</span><a class="contact__value link"
-                                                                                      href="#">ПАО Газпром</a></p>
-                                <p class="contact__row contact__row--position"><span
-                                            class="contact__title">Должность:</span><span class="contact__value">Финансовый аналитик</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="contact members__contact">
-                            <div class="avatar avatar--contact avatar--blue contact__avatar"><span>M</span></div>
-                            <div class="contact__inner"><a class="contact__name" href="#">Максим Емельянов</a>
-                                <p class="contact__last-connection">Последний контакт 2 ч. назад</p>
-                                <p class="contact__row contact__row--company"><span
-                                            class="contact__title">Компания:</span><a class="contact__value link"
-                                                                                      href="#">ПАО Газпром</a></p>
-                                <p class="contact__row contact__row--position"><span
-                                            class="contact__title">Должность:</span><span class="contact__value">Аналитик</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="contact members__contact">
-                            <div class="avatar avatar--contact contact__avatar"><span>O</span></div>
-                            <div class="contact__inner"><a class="contact__name" href="#">Анастасия Михайлова</a>
-                                <p class="contact__last-connection">Последний контакт 1 д. назад</p>
-                                <p class="contact__row contact__row--company"><span
-                                            class="contact__title">Компания:</span><a class="contact__value link"
-                                                                                      href="#">Ситилинк</a></p>
-                                <p class="contact__row contact__row--position"><span
-                                            class="contact__title">Должность:</span><span class="contact__value">Дизайнер</span>
-                                </p>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

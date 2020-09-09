@@ -1,10 +1,10 @@
 <?php
 namespace frontend\models;
+use frontend\interfaces\PersonInterface;
 use frontend\validators\RemoteEmailValidator;
-use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
-class User extends \common\models\User implements IdentityInterface
+class User extends \common\models\User implements IdentityInterface, PersonInterface
 {
     public $password_repeat;
 
@@ -27,7 +27,7 @@ class User extends \common\models\User implements IdentityInterface
     public function rules()
     {
         return [
-            [['company', 'phone', 'email', 'password', 'password_repeat'], 'safe'],
+            [['company', 'phone', 'email', 'password', 'password_repeat', 'name', 'position'], 'safe'],
             [['company', 'phone', 'email', 'password', 'password_repeat'], 'required'],
             ['email', 'email'],
             ['email', 'unique'],
@@ -39,5 +39,21 @@ class User extends \common\models\User implements IdentityInterface
             ['password', 'compare']
         ];
     }
+
+    public function getPersonName()
+    {
+        return $this->name;
+    }
+
+    public function getPersonPosition()
+    {
+        return $this->position;
+    }
+
+    public function getPersonCompany()
+    {
+        return $this->company;
+    }
+
 
 }
