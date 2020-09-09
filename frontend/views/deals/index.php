@@ -6,6 +6,7 @@ use frontend\models\Deal;
 use frontend\models\DealStatus;
 use frontend\widgets\Notification;
 use yii\data\ActiveDataProvider;
+use yii\helpers\Url;
 use yii\web\View;
 use function morphos\Russian\pluralize;
 
@@ -46,7 +47,8 @@ $this->title = 'Сделки';
             </div>
             <ul class="funnel-table__list">
                 <?php foreach ($deals as $deal): ?>
-                <li class="funnel-table__item"><a class="trade-card" href="#">
+                <li class="funnel-table__item"><a class="trade-card"
+                                                  href="<?=Url::to(['deals/view', 'id' => $deal->id]); ?>">
                         <div class="trade-card__inner">
                             <h3 class="trade-card__headline"><?=$deal->name; ?></h3>
                             <p class="trade-card__agent"><?=$deal->company->name; ?></p>

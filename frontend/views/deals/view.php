@@ -89,7 +89,7 @@ $this->registerJsFile('@web/js/deal-form.js', ['depends' => [JqueryAsset::class]
                         ]); ?>
                         <div class="deal-form__section">
                             <h3 class="visually-hidden">Основная информация</h3>
-                            <?= $form->field($deal, 'executor_id')->dropDownList(ArrayHelper::map($users, 'id', 'email'), [
+                            <?= $form->field($deal, 'executor_id')->dropDownList(ArrayHelper::map($users, 'id', 'name'), [
                                 'class' => 'deal-form__select select', 'prompt' => 'Не указан'
                             ]); ?>
                             <?= $form->field($deal, 'due_date', [
@@ -106,7 +106,7 @@ $this->registerJsFile('@web/js/deal-form.js', ['depends' => [JqueryAsset::class]
                                 'options' => ['class' => 'deal-form__row deal-form__row--message']
                             ])->textarea(['class' => 'message-box__field js-message-field', 'readonly' => true]); ?>
 
-                            <?= $form->field($deal, 'contact_id')->dropDownList(ArrayHelper::map($contacts, 'id', 'email'), [
+                            <?= $form->field($deal, 'contact_id')->dropDownList(ArrayHelper::map($contacts, 'id', 'name'), [
                                 'class' => 'deal-form__select select', 'prompt' => 'Не указан'
                             ]); ?>
                             <?= $form->field($deal, 'company_id')->dropDownList(ArrayHelper::map($companies, 'id', 'name'), [

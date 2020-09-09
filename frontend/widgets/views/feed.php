@@ -14,7 +14,7 @@ use yii\web\View;
         <time class="event__time"><?=Yii::$app->formatter->asTime($model->dt_add, 'short')?></time>
     </p>
     <div class="avatar event__avatar"><span>К</span></div>
-    <div class="event__message-wrap"><b class="event__author"><?=$model->user->email; ?></b>
+    <div class="event__message-wrap"><b class="event__author"><?=$model->user->name; ?></b>
         <?php switch ($model->type): ?><?php case Feed::TYPE_NEW: ?>
         <span class="event__text">создал сделку, статус</span><span class="label label--new">Новая</span>
         <?php break; ?>
