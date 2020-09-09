@@ -9,6 +9,7 @@ use frontend\models\User;
 use frontend\widgets\FeedItem;
 use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
+use yii\web\JqueryAsset;
 use yii\web\View;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -22,6 +23,8 @@ $this->title = 'Просмотр сделки';
 $users = User::find()->all();
 $companies = Company::find()->all();
 $contacts = Contact::find()->all();
+
+$this->registerJsFile('@web/js/deal-form.js', ['depends' => [JqueryAsset::class]])
 ?>
 
 <section class="deal-section">
@@ -74,7 +77,8 @@ $contacts = Contact::find()->all();
                     <div class="deal-card__tab tab js-tab active">
                         <?php
                         $form = ActiveForm::begin([
-                            'method' => 'post',
+                            'method' => 'post', 'action' => ['deals/save', 'id' => $deal->id],
+                            'id' => 'deal-form',
                             'options' => ['class' => 'deal-form'],
                             'fieldConfig' => [
                                 'options' => ['class' => 'deal-form__row'],
@@ -95,7 +99,7 @@ $contacts = Contact::find()->all();
                             <?= $form->field($deal, 'description', [
                                 'template' => "{label}\n<div class='deal-form__message-box message-box'>{input}\n{hint}</div>",
                                 'parts' => ['{hint}' => '<div class="message-box__actions"><button class="message-box__edit button button--icon js-message-edit" type="button"><svg width="12" height="13">
-                                                    <use xlink:href="img/sprite.svg#edit"></use>
+                                                    <use xlink:href="/img/sprite.svg#edit"></use>
                                                 </svg><span>Редактировать</span></button>
                                             <div class="message-box__buttons"><button class="message-box__cancel button button--plain js-message-cancel" type="button">Отмена</button><button class="message-box__save button button--plain js-message-save" type="button"><b>Сохранить</b></button></div>
                                         </div>'],

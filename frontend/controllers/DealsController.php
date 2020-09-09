@@ -42,4 +42,14 @@ class DealsController extends TableController
         return $this->render('view', ['deal' => $deal, 'note' => $note]);
     }
 
+    public function actionSave($id)
+    {
+        $deal = Deal::findOne($id);
+
+        if ($deal) {
+            $deal->load(\Yii::$app->request->post());
+            $deal->save();
+        }
+    }
+
 }

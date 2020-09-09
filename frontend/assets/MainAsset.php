@@ -16,6 +16,6 @@ class MainAsset extends AssetBundle
     ];
 
     public $depends = [
-//        'yii\web\JqueryAsset', 'frontend\assets\VendorAsset'
+        'yii\web\JqueryAsset', 'frontend\assets\VendorAsset'
     ];
 }
