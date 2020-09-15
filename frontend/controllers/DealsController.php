@@ -27,7 +27,7 @@ class DealsController extends TableController
         $deal = Deal::findOne($id);
         $note = new Note();
 
-        if (!$deal) {
+        if (!$deal || $deal->deleted) {
             throw new NotFoundHttpException("Сделка с этим ID не найдена");
         }
 

@@ -3,6 +3,7 @@
 
 namespace frontend\controllers;
 
+use frontend\models\Deal;
 use Yii;
 use frontend\models\Contact;
 use yii\db\ActiveRecord;
@@ -35,7 +36,7 @@ class TableController extends SecuredController
             if ($model->save()) {
                 Yii::$app->getSession()->setFlash($this->alias . '_create');
 
-                return $this->redirect('/' . $this->alias);
+                return $this->redirect([$this->alias . '/index']);
             }
         }
     }
@@ -53,5 +54,16 @@ class TableController extends SecuredController
         $dataProvider->getModels();
 
         return $this->render('index', ['dataProvider' => $dataProvider, 'model' => $model]);
+    }
+
+    public function actionDelete($id)
+    {
+        $deal = Deal::findOne($id);
+
+        if ($deal) {
+            $deal->softDelete();
+
+            return $this->redirect([$this->alias . '/index']);
+        }
     }
 }

@@ -44,7 +44,7 @@ class DealStatus extends \yii\db\ActiveRecord
 
     public function getDeals()
     {
-        return $this->hasMany(Deal::class,  ['status_id' => 'id']);
+        return $this->hasMany(Deal::class,  ['status_id' => 'id'])->notDeleted();
     }
 
     public function getDealsAmount()

@@ -4,6 +4,8 @@ namespace frontend\models;
 
 use frontend\interfaces\PersonInterface;
 use yii\db\ActiveRecord;
+use yii2tech\ar\softdelete\SoftDeleteBehavior;
+use yii2tech\ar\softdelete\SoftDeleteQueryBehavior;
 
 /**
  * This is the model class for table "deal".
@@ -63,6 +65,25 @@ class Deal extends ActiveRecord
             'dt_add' => 'Дата создания',
         ];
     }
+
+    public function behaviors()
+    {
+        return [
+            'softDeleteBahvior' => [
+                'class' => SoftDeleteBehavior::class,
+                'softDeleteAttributeValues' => ['deleted' => true]
+            ]
+        ];
+    }
+
+    public static function find()
+    {
+        $query = parent::find();
+        $query->attachBehavior('softDelete', SoftDeleteQueryBehavior::class);
+
+        return $query;
+    }
+
 
     public function getFeedItems()
     {
