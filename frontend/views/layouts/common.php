@@ -6,7 +6,7 @@ use yii\helpers\Html;
 MainAsset::register($this);
 
 ?>
-
+<?php $this->beginPage(); ?>
 <!DOCTYPE html>
 <html lang="ru">
 
