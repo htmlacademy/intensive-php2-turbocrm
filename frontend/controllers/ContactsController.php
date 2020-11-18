@@ -26,6 +26,8 @@ class ContactsController extends TableController
 
     public function init()
     {
+        parent::init();
+
         $this->entity = new Contact;
         $this->alias = 'persons';
     }

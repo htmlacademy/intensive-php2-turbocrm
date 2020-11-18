@@ -11,6 +11,8 @@ class DealsController extends TableController
 {
     public function init()
     {
+        parent::init();
+
         $this->entity = new Deal;
         $this->alias = 'deals';
     }
