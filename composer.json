@@ -24,7 +24,8 @@
         "yiisoft/yii2-faker": "^2.0",
         "npm-asset/moment": "^2.24",
         "wapmorgan/morphos": "^3.2",
-        "yii2tech/ar-softdelete": "^1.0"
+        "yii2tech/ar-softdelete": "^1.0",
+        "google/apiclient": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
