@@ -4,6 +4,7 @@
 namespace frontend\controllers;
 
 
+use common\services\GmailClient;
 use common\services\GoogleAuthClientFactory;
 
 class InboxController extends SecuredController
@@ -14,10 +15,11 @@ class InboxController extends SecuredController
         $authCLient = GoogleAuthClientFactory::getInstance();
 
         if (!$authCLient->prepareClient()) {
-            $auth_url = $authCLient->getAuthUrl();
-
-            $this->redirect($auth_url);
+            $this->redirect($authCLient->getAuthUrl());
         }
+
+        $gmailClient = new GmailClient($authCLient);
+        $messages = $gmailClient->getMessages();
     }
 
 }

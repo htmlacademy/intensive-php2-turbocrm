@@ -80,4 +80,8 @@ class GoogleAuthClient implements AuthClient
         return $this->googleClient->createAuthUrl();
     }
 
+    public function getVendorClient()
+    {
+        return $this->googleClient;
+    }
 }

@@ -20,4 +20,6 @@ interface AuthClient
 
     public function getAuthUrl();
 
+    public function getVendorClient();
+
 }
