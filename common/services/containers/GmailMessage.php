@@ -4,6 +4,9 @@
 namespace common\services\containers;
 
 
+use Google_Service_Gmail_Message;
+use PhpMimeMailParser\Parser;
+
 class GmailMessage implements MailMessage
 {
 
@@ -11,15 +14,32 @@ class GmailMessage implements MailMessage
     protected $subject;
     protected $date;
     protected $sender;
-    protected $snippet;
+    protected $id;
+    protected $unread = false;
+
+    /**
+     * @var Parser
+     */
+    protected $parser;
 
     /**
      * GmailMessage constructor.
-     * @param \Google_Service_Gmail_Message $rawMessage
+     * @param Google_Service_Gmail_Message $rawMessage
+     * @param bool $only_headers
      */
-    public function __construct(\Google_Service_Gmail_Message $rawMessage)
+    public function __construct(Google_Service_Gmail_Message $rawMessage, $only_headers = true)
     {
-        $this->prepare($rawMessage);
+        if (!$only_headers) {
+            $this->parser = new Parser();
+        }
+
+        $this->prepare($rawMessage, $only_headers);
+
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getSubject()
@@ -37,35 +57,28 @@ class GmailMessage implements MailMessage
         return $this->sender;
     }
 
-    public function hasAttach()
-    {
-        return false;
-    }
-
     public function getDate()
     {
         return $this->date;
     }
 
-    public function isMarked()
+    public function getIsUnread()
     {
-        return false;
+        return $this->unread;
     }
 
-    public function getSnippet()
+    protected function prepare(Google_Service_Gmail_Message $rawMessage, $only_headers = true)
     {
-        // TODO: Implement getSnippet() method.
-    }
-
-    protected function prepare(\Google_Service_Gmail_Message $rawMessage)
-    {
-        $this->snippet = $rawMessage->getSnippet();
         $payload = $rawMessage->getPayload();
-        $parts = $payload->getParts();
-        $part = count($parts) > 1 ? 1 : 0;
+        $headers = $payload ? $payload->getHeaders() : [];
 
-        $this->body = base64_decode($parts[$part]->getBody()->getData());
-        $headers = $payload->getHeaders();
+        $this->id = $rawMessage->getId();
+
+        if (!$only_headers) {
+            $this->parser->setText($rawMessage->getRaw());
+            $text = $this->parser->getMessageBody('html');
+
+        }
 
         foreach ($headers as $header) {
             $name = $header->getName();
@@ -81,8 +94,29 @@ class GmailMessage implements MailMessage
                 case 'From':
                     $this->sender = $value;
                     break;
-
             }
         }
+
+        $this->id = $rawMessage->getId();
+        $this->unread = $this->isUnread($rawMessage);
+    }
+
+    protected function loadMetadata()
+    {
+
+    }
+
+    protected function isUnread(Google_Service_Gmail_Message $rawMessage)
+    {
+        $result = false;
+
+        foreach ($rawMessage->getLabelIds() as $label) {
+            if ($label == 'UNREAD') {
+                $result = true;
+                break;
+            }
+        }
+
+        return $result;
     }
 }

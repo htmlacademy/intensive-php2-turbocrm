@@ -4,6 +4,7 @@ namespace common\services\containers;
 
 interface MailMessage
 {
+    public function getId();
 
     public function getSubject();
 
@@ -11,12 +12,8 @@ interface MailMessage
 
     public function getSender();
 
-    public function hasAttach();
-
     public function getDate();
 
-    public function isMarked();
-
-    public function getSnippet();
+    public function getIsUnread();
 
 }

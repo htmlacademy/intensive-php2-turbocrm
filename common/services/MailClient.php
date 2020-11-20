@@ -15,5 +15,9 @@ interface MailClient
      */
     public function getMessages($max_count = 10);
 
-
+    /**
+     * @param $msgid
+     * @return containers\MailMessage;
+     */
+    public function getMessageById($msgid);
 }

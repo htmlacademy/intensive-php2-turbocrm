@@ -45,12 +45,10 @@ MainAsset::register($this);
         </div>
     </div>
 </header>
-<main class="crm-content">
+<main class="<?=$this->params['main_class'] ?? 'crm-content'; ?>">
     <?= $content ?>
 </main>
 <?php $this->endBody() ?>
-
 </body>
-
 </html>
 <?php $this->endPage() ?>
