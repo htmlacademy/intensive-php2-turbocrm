@@ -79,13 +79,7 @@ $this->registerJsFile('@web/js/inbox.js', ['depends' => [JqueryAsset::class]])
                     <h2 class="letter__subject header-3"><?=$selected_message->getSubject(); ?></h2><span
                             class="letter__date"><?=Yii::$app->formatter->asDatetime($selected_message->getDate(), 'short'); ?></span>
                     <div class="letter__body">
-<!--                        <p>Здравсвуйте Антон,</p>-->
-<!--                        <p>Возникли вопросы по ТЭО, которое вы нам сформировали. Я сейчас по пунктам их и задам.-->
-<!--                            Пожлуйста,-->
-<!--                            помогите нам разобраться:</p>-->
-<!--                        <p>- В части 1. На основе чего подсчитан остаток по рачету?<br>- Часть 2. Как проводился анализ-->
-<!--                            рынка?<br>- Часть 4. Какие прогнозы по инвестиционному возврату?</p>-->
-<!--                        <p>Спасибо,<br>Алексей Анатольев</p>-->
+                        <?=$selected_message->getBody(); ?>
                     </div>
                 </div>
             </div>

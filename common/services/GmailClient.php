@@ -50,7 +50,7 @@ class GmailClient implements MailClient
 
     public function getMessageById($msgid)
     {
-        $rawMessage = $this->serviceGmail->users_messages->get($this->user, $msgid, ['format' => 'RAW']);
+        $rawMessage = $this->serviceGmail->users_messages->get($this->user, $msgid, ['format' => 'FULL']);
         $message = new GmailMessage($rawMessage, false);
 
         return $message;

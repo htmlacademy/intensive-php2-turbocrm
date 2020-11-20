@@ -6,6 +6,7 @@ namespace common\services\containers;
 
 use Google_Service_Gmail_Message;
 use PhpMimeMailParser\Parser;
+use ZBateson\MailMimeParser\Message;
 
 class GmailMessage implements MailMessage
 {
@@ -75,9 +76,7 @@ class GmailMessage implements MailMessage
         $this->id = $rawMessage->getId();
 
         if (!$only_headers) {
-            $this->parser->setText($rawMessage->getRaw());
-            $text = $this->parser->getMessageBody('html');
-
+            $this->body = $rawMessage->getSnippet();
         }
 
         foreach ($headers as $header) {
