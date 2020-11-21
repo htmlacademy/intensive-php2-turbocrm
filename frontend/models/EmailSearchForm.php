@@ -18,7 +18,7 @@ class EmailSearchForm extends Model
                 $value = "in:inbox $value";
 
                 return $value;
-            }],
+            }, 'skipOnEmpty' => true],
             [['q'], 'string', 'length' => [2, 128]]
         ];
     }

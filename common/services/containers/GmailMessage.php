@@ -15,6 +15,8 @@ class GmailMessage implements MailMessage
     protected $id;
     protected $unread = false;
 
+    protected $regexp = '/^([\w\s]+) \<([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)\>$/m';
+
     /**
      * GmailMessage constructor.
      * @param Google_Service_Gmail_Message $rawMessage
@@ -39,9 +41,18 @@ class GmailMessage implements MailMessage
         return $this->body;
     }
 
-    public function getSender()
+    public function getSenderName()
     {
-        return $this->sender;
+        preg_match($this->regexp, $this->sender, $matches);
+
+        return $matches[1] ?? 'Без имени';
+    }
+
+    public function getSenderAddress()
+    {
+        preg_match($this->regexp, $this->sender, $matches);
+
+        return $matches[2] ?? $this->sender;
     }
 
     public function getDate()

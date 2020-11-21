@@ -58,7 +58,7 @@ $this->registerJsFile('@web/js/inbox.js', ['depends' => [JqueryAsset::class]])
             <?php foreach($messages as $message): ?>
                 <tr data-id="<?=$message->getId(); ?>"
                     class="<?=$message->getIsUnread() ? 'unread' : ''; ?> <?=$message->getId() == $msgid ? 'active' : ''; ?>">
-                    <td><?=$message->getSender(); ?></td>
+                    <td><?=$message->getSenderName(); ?></td>
                     <td><?=$message->getSubject(); ?></td>
                     <td><?=Yii::$app->formatter->asDate($message->getDate(), 'short'); ?></td>
                 </tr>
@@ -69,10 +69,9 @@ $this->registerJsFile('@web/js/inbox.js', ['depends' => [JqueryAsset::class]])
     <div class="letter communication-mail__letter">
         <?php if ($selected_message): ?>
             <div class="letter__wrapper">
-                <div class="letter__actions"><a class="button button--tiny button--gray letter__button" href="#"><span>Создать сделку</span></a><a
-                            class="button button--tiny button--gray letter__button" href="#"><span>Создать задачу</span></a><a
-                            class="button button--tiny button--gray letter__button"
-                            href="#"><span>Добавить контакт</span></a>
+                <div class="letter__actions">
+                    <a class="button button--tiny button--gray letter__button" href="#"><span>Добавить контакт</span></a>
+                    <a class="button button--tiny button--gray letter__button" href="#"><span>Создать сделку</span></a>
                 </div>
                 <div class="letter__content">
                     <h2 class="letter__subject header-3"><?=$selected_message->getSubject(); ?></h2><span
@@ -83,27 +82,5 @@ $this->registerJsFile('@web/js/inbox.js', ['depends' => [JqueryAsset::class]])
                 </div>
             </div>
         <?php endif ?>
-    </div>
-</section>
-<section class="communication-telegram communication__content" id="telegram">
-    <div class="chat-list communication-telegram__list">
-        <div class="chat-list__actions">
-            <div class="chat-list__search">
-                <div class="search-block">
-                    <form class="search-block__form" action="#" method="post">
-                        <div class="search-block__field-wrapper"><label class="search-block__label"
-                                                                        for="trade-search-field"><span
-                                        class="visually-hidden">Поле поиска</span>
-                                <svg width="16" height="16">
-                                    <use xlink:href="/img/sprite.svg#zoom"></use>
-                                </svg>
-                            </label><input class="search-block__field" id="trade-search-field" type="search"
-                                           placeholder="Поиск"/>
-                            <button class="visually-hidden" type="submit">Найти</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
 </section>

@@ -10,7 +10,9 @@ interface MailMessage
 
     public function getBody();
 
-    public function getSender();
+    public function getSenderName();
+
+    public function getSenderAddress();
 
     public function getDate();
 

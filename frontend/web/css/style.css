@@ -4905,17 +4905,8 @@ div.message-panel--chat .message-panel__button, div.message-panel--letter .messa
 }
 
 .mail-list__table td:first-child, .mail-list__table th:first-child {
-    width: 10.3%;
     padding-left: 34px;
     padding-top: 16px
-}
-
-.mail-list__table th:nth-child(2) {
-    width: 40.5%
-}
-
-.mail-list__table th:nth-child(3) {
-    width: 26.3%
 }
 
 .mail-list__table td:nth-child(4), .mail-list__table th:nth-child(4) {
