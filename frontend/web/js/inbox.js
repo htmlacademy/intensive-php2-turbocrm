@@ -3,7 +3,3 @@ $('table.mail-list__table tbody').on('click', 'tr', function (event) {
 
     window.location = '/inbox/email?msgid=' + msgId;
 });
-
-function addNewContact(email, name) {
-
-}

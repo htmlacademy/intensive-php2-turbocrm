@@ -2,6 +2,7 @@
 
 use common\services\containers\MailMessage;
 use frontend\models\EmailSearchForm;
+use yii\helpers\Url;
 use yii\web\JqueryAsset;
 use yii\widgets\ActiveForm;
 
@@ -43,15 +44,9 @@ $this->registerJsFile('@web/js/inbox.js', ['depends' => [JqueryAsset::class]])
         <table class="mail-list__table" cellspacing="0">
             <thead>
             <tr>
-                <th>
-                    <p>Отправитель</p>
-                </th>
-                <th>
-                    <p>Тема</p>
-                </th>
-                <th>
-                    <p>Дата</p>
-                </th>
+                <th><p>Отправитель</p></th>
+                <th><p>Тема</p></th>
+                <th><p>Дата</p></th>
             </tr>
             </thead>
             <tbody>
@@ -70,8 +65,12 @@ $this->registerJsFile('@web/js/inbox.js', ['depends' => [JqueryAsset::class]])
         <?php if ($selected_message): ?>
             <div class="letter__wrapper">
                 <div class="letter__actions">
-                    <a class="button button--tiny button--gray letter__button" href="#"><span>Добавить контакт</span></a>
-                    <a class="button button--tiny button--gray letter__button" href="#"><span>Создать сделку</span></a>
+                    <a class="button button--tiny button--gray letter__button" href="<?=Url::toRoute(['inbox/create-contact', 'msgid' => $selected_message->getId()]); ?>">
+                        <span>Добавить контакт</span>
+                    </a>
+                    <a class="button button--tiny button--gray letter__button" href="<?=Url::toRoute(['inbox/create-deal', 'msgid' => $selected_message->getId()]); ?>">
+                        <span>Создать сделку</span>
+                    </a>
                 </div>
                 <div class="letter__content">
                     <h2 class="letter__subject header-3"><?=$selected_message->getSubject(); ?></h2><span

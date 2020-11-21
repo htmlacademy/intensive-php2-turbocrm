@@ -89,6 +89,6 @@ class Contact extends ActiveRecord implements PersonInterface
 
     public function getPersonCompany()
     {
-        return $this->company->name;
+        return $this->company->name ?? null;
     }
 }

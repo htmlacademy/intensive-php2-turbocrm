@@ -1,5 +1,7 @@
 <?php
 namespace frontend\controllers;
+use common\services\GmailClient;
+use common\services\GoogleAuthClientFactory;
 use frontend\models\Contact;
 use Yii;
 
