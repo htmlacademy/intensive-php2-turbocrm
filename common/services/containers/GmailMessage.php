@@ -5,12 +5,9 @@ namespace common\services\containers;
 
 
 use Google_Service_Gmail_Message;
-use PhpMimeMailParser\Parser;
-use ZBateson\MailMimeParser\Message;
 
 class GmailMessage implements MailMessage
 {
-
     protected $body;
     protected $subject;
     protected $date;
@@ -19,23 +16,12 @@ class GmailMessage implements MailMessage
     protected $unread = false;
 
     /**
-     * @var Parser
-     */
-    protected $parser;
-
-    /**
      * GmailMessage constructor.
      * @param Google_Service_Gmail_Message $rawMessage
-     * @param bool $only_headers
      */
-    public function __construct(Google_Service_Gmail_Message $rawMessage, $only_headers = true)
+    public function __construct(Google_Service_Gmail_Message $rawMessage)
     {
-        if (!$only_headers) {
-            $this->parser = new Parser();
-        }
-
-        $this->prepare($rawMessage, $only_headers);
-
+        $this->prepare($rawMessage);
     }
 
     public function getId()
@@ -68,16 +54,13 @@ class GmailMessage implements MailMessage
         return $this->unread;
     }
 
-    protected function prepare(Google_Service_Gmail_Message $rawMessage, $only_headers = true)
+    protected function prepare(Google_Service_Gmail_Message $rawMessage)
     {
         $payload = $rawMessage->getPayload();
         $headers = $payload ? $payload->getHeaders() : [];
 
         $this->id = $rawMessage->getId();
-
-        if (!$only_headers) {
-            $this->body = $rawMessage->getSnippet();
-        }
+        $this->body = $rawMessage->getSnippet();
 
         foreach ($headers as $header) {
             $name = $header->getName();
@@ -98,11 +81,6 @@ class GmailMessage implements MailMessage
 
         $this->id = $rawMessage->getId();
         $this->unread = $this->isUnread($rawMessage);
-    }
-
-    protected function loadMetadata()
-    {
-
     }
 
     protected function isUnread(Google_Service_Gmail_Message $rawMessage)

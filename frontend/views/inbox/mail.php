@@ -1,7 +1,9 @@
 <?php
 
 use common\services\containers\MailMessage;
+use frontend\models\EmailSearchForm;
 use yii\web\JqueryAsset;
+use yii\widgets\ActiveForm;
 
 $this->params['main_class'] = 'communication';
 
@@ -9,35 +11,32 @@ $this->params['main_class'] = 'communication';
  * @var $messages MailMessage[]
  * @var $selected_message MailMessage
  * @var $msgid string
+ * @var $unread_count integer
+ * @var $model EmailSearchForm
  */
 
 $this->registerJsFile('@web/js/inbox.js', ['depends' => [JqueryAsset::class]])
-
 ?>
 
 <section class="communication-header communication__header">
     <h1 class="header-3 communication-header__caption">Коммуникации</h1>
     <button class="communication-header__button communication-header__mail active" data-target="mail">Почтовый ящик
     </button>
-    <span class="communication-header__unread-count">2</span>
+    <?php if ($unread_count): ?>
+        <span class="communication-header__unread-count"><?=$unread_count; ?></span>
+    <?php endif ?>
 </section>
 <section class="communication-mail communication__content show" id="mail">
     <div class="mail-list communication-mail__list">
         <div class="mail-list__actions">
             <div class="mail-list__search">
                 <div class="search-block">
-                    <form class="search-block__form" action="#" method="post">
-                        <div class="search-block__field-wrapper"><label class="search-block__label"
-                                                                        for="trade-search-field"><span
-                                        class="visually-hidden">Поле поиска</span>
-                                <svg width="16" height="16">
-                                    <use xlink:href="/img/sprite.svg#zoom"></use>
-                                </svg>
-                            </label><input class="search-block__field" id="trade-search-field" type="search"
-                                           placeholder="Поиск"/>
+                    <?php $form = ActiveForm::begin(['method' => 'get', 'options' => ['class' => 'search-block__form']]);?>
+                    <?=$form->field($model, 'q', ['labelOptions' => ['class' => 'search-block__label'], 'options' => ['class' => 'search-block__field-wrapper']])
+                                ->input('search', ['class' => 'search-block__field', 'placeholder' => 'Поиск'])
+                                ->label(''); ?>
                             <button class="visually-hidden" type="submit">Найти</button>
-                        </div>
-                    </form>
+                    <?php ActiveForm::end(); ?>
                 </div>
             </div>
         </div>

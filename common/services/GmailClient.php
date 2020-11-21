@@ -29,10 +29,16 @@ class GmailClient implements MailClient
     /**
      * @inheritDoc
      */
-    public function getMessages($max_count = 10)
+    public function getMessages($max_count = 10, $search_query = null)
     {
         $result = [];
-        $response = $this->serviceGmail->users_messages->listUsersMessages($this->user, ['maxResults' => $max_count]);
+        $params = ['maxResults' => $max_count];
+
+        if ($search_query) {
+            $params['q'] = $search_query;
+        }
+
+        $response = $this->serviceGmail->users_messages->listUsersMessages($this->user, $params);
 
         /**
          * @var $messages Google_Service_Gmail_Message[]
@@ -48,10 +54,17 @@ class GmailClient implements MailClient
         return $result;
     }
 
+    public function getUnreadCount()
+    {
+        $response = $this->serviceGmail->users_messages->listUsersMessages($this->user, ['labelIds' => ['UNREAD']]);
+
+        return $response->count();
+    }
+
     public function getMessageById($msgid)
     {
         $rawMessage = $this->serviceGmail->users_messages->get($this->user, $msgid, ['format' => 'FULL']);
-        $message = new GmailMessage($rawMessage, false);
+        $message = new GmailMessage($rawMessage);
 
         return $message;
     }

@@ -4,7 +4,7 @@ use frontend\models\Company;
 use frontend\models\Contact;
 use frontend\models\ContactType;
 use yii\helpers\ArrayHelper;
-use \yii\widgets\ActiveForm;
+use yii\widgets\ActiveForm;
 
 /** @var $model Contact */
 
