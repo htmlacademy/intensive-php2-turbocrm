@@ -21,4 +21,11 @@ class LandingController extends Controller
             }
         }
     }
+
+    public function actionIndex()
+    {
+        $this->layout = 'anon';
+
+        return $this->render('index');
+    }
 }

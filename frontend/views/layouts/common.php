@@ -41,7 +41,8 @@ MainAsset::register($this);
                 ]
             ]); ?>
         </nav>
-        <div class="page-header__user-block user-block"><button class="user-block__toggler avatar" type="button"><span class="visually-hidden">Показать меню пользователя</span><span>A</span></button>
+        <div class="page-header__user-block user-block">
+            <button class="user-block__toggler avatar" type="button"><span>A</span></button>
             <ul class="user-block__menu">
                 <li><?=Html::a('Настройки', ['profile/settings']); ?></li>
                 <li><?=Html::a('Выход', ['user/logout']); ?></li>
