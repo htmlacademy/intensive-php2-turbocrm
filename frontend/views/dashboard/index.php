@@ -133,4 +133,3 @@ $this->params['main_class'] = 'crm-content';
         </div>
     </div>
 </section>
-
