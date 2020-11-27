@@ -17,8 +17,9 @@ class TableController extends SecuredController
      * @var ActiveRecord
      */
     protected $entity;
-
     protected $alias;
+
+    protected $redirectAfterSaveUrl = null;
 
     public function actionCreate()
     {
@@ -35,8 +36,9 @@ class TableController extends SecuredController
 
             if ($model->save()) {
                 Yii::$app->getSession()->setFlash($this->alias . '_create');
+                $redirectUrl = $this->redirectAfterSaveUrl ?: [$this->alias . '/index'];
 
-                return $this->redirect([$this->alias . '/index']);
+                return $this->redirect($redirectUrl);
             }
         }
     }

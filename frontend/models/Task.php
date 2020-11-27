@@ -2,7 +2,7 @@
 
 namespace frontend\models;
 
-use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "task".
@@ -19,7 +19,7 @@ use Yii;
  * @property User $executor
  * @property TaskType $type
  */
-class Task extends \yii\db\ActiveRecord
+class Task extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -35,7 +35,7 @@ class Task extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['description', 'executor_id', 'type_id', 'deal_id'], 'required'],
+            [['description', 'executor_id', 'type_id', 'deal_id'], 'required', 'on' => 'insert'],
             [['description'], 'string'],
             [['executor_id', 'type_id', 'deal_id'], 'integer'],
             [['due_date', 'dt_add'], 'safe'],

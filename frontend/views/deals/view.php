@@ -5,6 +5,7 @@ use frontend\models\Company;
 use frontend\models\Contact;
 use frontend\models\Deal;
 use frontend\models\Note;
+use frontend\models\Task;
 use frontend\models\User;
 use frontend\widgets\FeedItem;
 use yii\data\ActiveDataProvider;
@@ -67,6 +68,9 @@ $nextStatus = $deal->status->getNextStatus();
                             <button type="button">Основное</button>
                         </li>
                         <li class="js-tab-control">
+                            <button type="button">Задачи</button>
+                        </li>
+                        <li class="js-tab-control">
                             <button type="button">Участники</button>
                         </li>
                     </ul>
@@ -122,23 +126,53 @@ $nextStatus = $deal->status->getNextStatus();
                         </div>
                         <?php ActiveForm::end(); ?>
                     </div>
-                </div>
-                <div class="deal-card__tab tab js-tab">
-                    <div class="members">
-                        <?php foreach ($deal->getAllParticipants() as $person): ?>
-                        <div class="contact members__contact">
-                            <div class="avatar avatar--contact contact__avatar"><span>O</span></div>
-                            <div class="contact__inner"><a class="contact__name" href="#"><?=$person->getPersonName(); ?></a>
-                                <p class="contact__row contact__row--company"><span
-                                            class="contact__title">Компания:</span><a class="contact__value link"
-                                                                                      href="#"><?=$person->getPersonCompany(); ?></a></p>
-                                <p class="contact__row contact__row--position"><span
-                                            class="contact__title">Должность:</span>
-                                    <span class="contact__value"><?=$person->getPersonPosition(); ?></span>
-                                </p>
-                            </div>
+                    <div class="deal-card__tab tab js-tab">
+                        <div class="task"><a class="button button--shadow js-create-task task__button" href="#"><span>Новая задача</span></a>
+                            <?php if ($deal->tasks): ?>
+                            <table class="task__table" cellspacing="0">
+                                <tr>
+                                    <th>
+                                        <p>Дата создания</p>
+                                    </th>
+                                    <th>
+                                        <p>Тип</p>
+                                    </th>
+                                    <th>
+                                        <p>Исполнитель</p>
+                                    </th>
+                                    <th>
+                                        <p>Срок</p>
+                                    </th>
+                                </tr>
+                                <?php foreach ($deal->tasks as $task): ?>
+                                <tr>
+                                    <td><p><?=$task->dt_add;?></p></td>
+                                    <td><p><?=$task->type->name; ?></p></td>
+                                    <td><p><?=$task->executor->name; ?></p></td>
+                                    <td><p><?=$task->due_date; ?></p></td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </table>
+                            <?php endif; ?>
                         </div>
-                        <?php endforeach; ?>
+                    </div>
+                    <div class="deal-card__tab tab js-tab">
+                        <div class="members">
+                            <?php foreach ($deal->getAllParticipants() as $person): ?>
+                                <div class="contact members__contact">
+                                    <div class="avatar avatar--contact contact__avatar"><span>O</span></div>
+                                    <div class="contact__inner"><a class="contact__name" href="#"><?=$person->getPersonName(); ?></a>
+                                        <p class="contact__row contact__row--company"><span
+                                                    class="contact__title">Компания:</span><a class="contact__value link"
+                                                                                              href="#"><?=$person->getPersonCompany(); ?></a></p>
+                                        <p class="contact__row contact__row--position"><span
+                                                    class="contact__title">Должность:</span>
+                                            <span class="contact__value"><?=$person->getPersonPosition(); ?></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -146,6 +180,8 @@ $nextStatus = $deal->status->getNextStatus();
     </div>
     <div class="deal-section__log">
         <div class="deal-log">
+            <?=$this->render('//partials/_task_create', ['model' => new Task, 'deal_id' => $deal->id]); ?>
+
             <p class="header-3 deal-log__header">События</p>
             <ul class="deal-log__list">
                 <?php foreach ($deal->getFeedItems() as $feedItem): ?>

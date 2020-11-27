@@ -2,7 +2,6 @@
 
 namespace frontend\controllers;
 
-use frontend\behaviors\FeedBehavior;
 use frontend\models\Deal;
 use frontend\models\DealStatus;
 use frontend\models\Feed;

@@ -23,6 +23,7 @@ use yii2tech\ar\softdelete\SoftDeleteQueryBehavior;
  * @property string $dt_add
  *
  * @property DealStatus $status
+ * @property Task[] $tasks
  */
 class Deal extends ActiveRecord
 {
@@ -129,6 +130,11 @@ class Deal extends ActiveRecord
     public function getNotes()
     {
         return $this->hasMany(Note::class, ['deal_id' => 'id']);
+    }
+
+    public function getTasks()
+    {
+        return $this->hasMany(Task::class, ['deal_id' => 'id']);
     }
 
     public function getFeed()
