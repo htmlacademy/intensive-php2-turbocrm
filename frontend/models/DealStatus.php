@@ -66,4 +66,9 @@ class DealStatus extends \yii\db\ActiveRecord
         return $this->getDeals()->sum('budget_amount');
     }
 
+    public function getDealsCount()
+    {
+        return $this->getDeals()->count();
+    }
+
 }
