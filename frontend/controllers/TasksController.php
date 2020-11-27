@@ -4,7 +4,6 @@
 namespace frontend\controllers;
 
 
-use frontend\models\Deal;
 use frontend\models\Task;
 
 class TasksController extends TableController

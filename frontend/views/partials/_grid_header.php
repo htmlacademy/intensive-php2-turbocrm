@@ -35,8 +35,7 @@ use yii\widgets\ActiveForm;
             <?php ActiveForm::end(); ?>
         </div>
     </div>
-    <div class="contacts-section__pagination-block-wrapper"><a
-            class="button button--tiny button--green contacts-section__btn" href="#">Экспорт XLS</a>
+    <div class="contacts-section__pagination-block-wrapper">
         <div class="contacts-section__pagination-block">
             <?=LinkPager::widget([
                 'options' => ['class' => 'pagination-block'],

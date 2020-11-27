@@ -2,7 +2,9 @@
 
 namespace frontend\models;
 
+use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "task".
@@ -21,12 +23,22 @@ use yii\db\ActiveRecord;
  */
 class Task extends ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
+    public $search;
+
+    public function search($params)
     {
-        return 'task';
+        $query = self::find();
+        $dataProvider = new ActiveDataProvider(['query' => $query]);
+
+        if ($params) {
+            $this->load($params);
+
+            if ($this->search) {
+                $query->filterWhere(['like', 'description', $this->search]);
+            }
+        }
+
+        return $dataProvider;
     }
 
     /**
@@ -36,6 +48,7 @@ class Task extends ActiveRecord
     {
         return [
             [['description', 'executor_id', 'type_id', 'deal_id'], 'required', 'on' => 'insert'],
+            [['description', 'executor_id', 'type_id', 'deal_id', 'search'], 'safe'],
             [['description'], 'string'],
             [['executor_id', 'type_id', 'deal_id'], 'integer'],
             [['due_date', 'dt_add'], 'safe'],
@@ -52,12 +65,12 @@ class Task extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'description' => 'Description',
-            'executor_id' => 'Executor ID',
-            'due_date' => 'Due Date',
-            'type_id' => 'Type ID',
-            'dt_add' => 'Dt Add',
-            'deal_id' => 'Deal ID',
+            'description' => 'Описание',
+            'executor_id' => 'Исполнитель',
+            'due_date' => 'Срок исполнения',
+            'type_id' => 'Тип',
+            'dt_add' => 'Дата создания',
+            'deal_id' => 'Сделка',
         ];
     }
 
@@ -83,5 +96,10 @@ class Task extends ActiveRecord
     public function getType()
     {
         return $this->hasOne(TaskType::className(), ['id' => 'type_id']);
+    }
+
+    public static function getExpiredCount()
+    {
+        return self::find()->where(['<', 'due_date', new Expression('NOW()')])->count();
     }
 }
