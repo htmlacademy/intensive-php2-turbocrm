@@ -21,6 +21,8 @@ use yii2tech\ar\softdelete\SoftDeleteQueryBehavior;
  * @property string $description
  * @property int $budget_amount
  * @property string $dt_add
+ *
+ * @property DealStatus $status
  */
 class Deal extends ActiveRecord
 {

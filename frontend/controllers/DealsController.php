@@ -24,6 +24,16 @@ class DealsController extends TableController
         return $this->render('index', ['statuses' => $dealStatuses]);
     }
 
+    public function actionNext($id)
+    {
+        return $this->changeStatus($id, 'next');
+    }
+
+    public function actionPrev($id)
+    {
+        return $this->changeStatus($id, 'prev');
+    }
+
     public function actionView($id)
     {
         $deal = Deal::findOne($id);
@@ -52,6 +62,29 @@ class DealsController extends TableController
             $deal->load(\Yii::$app->request->post());
             $deal->save();
         }
+    }
+
+    private function changeStatus($id, $direction)
+    {
+        $deal = Deal::findOne($id);
+        $status = null;
+
+        if (!$deal) {
+            throw new NotFoundHttpException("Сделка с этим ID не найдена");
+        }
+
+        if ($direction === 'next') {
+            $status = $deal->status->getNextStatus();
+        }
+        else if ($direction === 'prev') {
+            $status = $deal->status->getPrevStatus();
+        }
+
+        if ($status) {
+            $deal->link('status', $status);
+        }
+
+        return $this->redirect(['deals/view', 'id' => $id]);
     }
 
 }

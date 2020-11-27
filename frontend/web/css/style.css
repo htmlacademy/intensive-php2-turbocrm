@@ -3250,13 +3250,14 @@ input:not([type=checkbox]):not([type=radio]), textarea {
     margin-bottom: 15px
 }
 
-.actions-list__dropdown button {
+.actions-list__dropdown a {
     padding: 0;
     text-align: left;
     font-size: inherit;
     line-height: inherit;
     background-color: transparent;
-    border: 0
+    border: 0;
+    color: black;
 }
 
 .actions-list:focus .actions-list__dropdown, .actions-list:hover .actions-list__dropdown {

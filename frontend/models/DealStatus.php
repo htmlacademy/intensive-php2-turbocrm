@@ -42,6 +42,20 @@ class DealStatus extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getNextStatus()
+    {
+        $next = self::find()->orderBy('id ASC')->where(['>', 'id', $this->id])->one();
+
+        return $next;
+    }
+
+    public function getPrevStatus()
+    {
+        $prev = self::find()->orderBy('id DESC')->where(['<', 'id', $this->id])->one();
+
+        return $prev;
+    }
+
     public function getDeals()
     {
         return $this->hasMany(Deal::class,  ['status_id' => 'id'])->notDeleted();

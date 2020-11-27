@@ -22,11 +22,6 @@ $this->params['main_class'] = 'settings';
                 ]
             ]
     ); ?>
-    <div class="settings__top-wrapper">
-        <div class="avatar settings__avatar"><span>К</span></div>
-        <a class="link" href="#">Сменить аватар</a>
-    </div>
-
     <?=$form->field($model, 'name'); ?>
     <?=$form->field($model, 'company'); ?>
     <?=$form->field($model, 'position'); ?>

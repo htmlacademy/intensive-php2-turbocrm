@@ -24,7 +24,10 @@ $users = User::find()->all();
 $companies = Company::find()->all();
 $contacts = Contact::find()->all();
 
-$this->registerJsFile('@web/js/deal-form.js', ['depends' => [JqueryAsset::class]])
+$this->registerJsFile('@web/js/deal-form.js', ['depends' => [JqueryAsset::class]]);
+
+$prevStatus = $deal->status->getPrevStatus();
+$nextStatus = $deal->status->getNextStatus();
 ?>
 
 <section class="deal-section">
@@ -44,18 +47,15 @@ $this->registerJsFile('@web/js/deal-form.js', ['depends' => [JqueryAsset::class]
                             </button>
                             <div class="actions-list__dropdown">
                                 <ul>
-                                    <li>
-                                        <button type="button">Вернуть в работу</button>
-                                    </li>
-                                    <li>
-                                        <button type="button">Переименовать</button>
-                                    </li>
-                                    <li>
-                                        <button type="button">Создать дубликат</button>
-                                    </li>
-                                    <li>
-                                        <button type="button">Удалить</button>
-                                    </li>
+                                    <?php if ($prevStatus): ?>
+                                    <li><?=Html::a("← «{$prevStatus->name}»", ['deals/prev', 'id' => $deal->id]); ?></li>
+                                    <?php endif; ?>
+
+                                    <?php if ($nextStatus): ?>
+                                        <li><?= Html::a("→ «{$nextStatus->name}»", ['deals/next', 'id' => $deal->id]); ?></li>
+                                    <?php endif ?>
+
+                                    <li><?=Html::a('Удалить', ['deals/delete', 'id' => $deal->id]); ?></li>
                                 </ul>
                             </div>
                         </div>
@@ -143,7 +143,6 @@ $this->registerJsFile('@web/js/deal-form.js', ['depends' => [JqueryAsset::class]
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <div class="deal-section__log">
         <div class="deal-log">
