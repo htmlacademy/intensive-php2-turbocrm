@@ -18,6 +18,13 @@ use yii\web\View;
         <?php switch ($model->type): ?><?php case Feed::TYPE_NEW: ?>
         <span class="event__text">создал сделку, статус</span><span class="label label--new">Новая</span>
         <?php break; ?>
+
+        <?php case Feed::TYPE_STATUS: ?>
+        <?php $status = $model->getAssociatedContent(); ?>
+        <span class="event__text">перевел сделку в новый статус </span>
+            <span class="label label--<?=$status->alias; ?>"><?=$status->name ?? null; ?></span>
+        <?php break; ?>
+
         <?php case Feed::TYPE_NOTE: ?>
             <span class="event__text">оставил заметку</span>
             <p class="event__message"><?=$model->getAssociatedContent()->content ?? null; ?></p>

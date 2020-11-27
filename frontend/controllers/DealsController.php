@@ -2,8 +2,10 @@
 
 namespace frontend\controllers;
 
+use frontend\behaviors\FeedBehavior;
 use frontend\models\Deal;
 use frontend\models\DealStatus;
+use frontend\models\Feed;
 use frontend\models\Note;
 use yii\web\NotFoundHttpException;
 
@@ -82,6 +84,10 @@ class DealsController extends TableController
 
         if ($status) {
             $deal->link('status', $status);
+
+            $feed = new Feed();
+            $feed->setAttributes(['type' => Feed::TYPE_STATUS, 'value' => $status->id, 'deal_id' => $deal->id]);
+            $feed->save();
         }
 
         return $this->redirect(['deals/view', 'id' => $id]);

@@ -27,7 +27,7 @@ class FeedBehavior extends Behavior
         ];
     }
 
-    public function addFeedItem(Event $event)
+    public function addFeedItem()
     {
         $feedItem = new Feed();
         $feedItem->type = $this->eventType;
