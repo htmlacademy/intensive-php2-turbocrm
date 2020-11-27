@@ -28,15 +28,15 @@ class User extends \common\models\User implements IdentityInterface, PersonInter
     {
         return [
             [['company', 'phone', 'email', 'password', 'password_repeat', 'name', 'position'], 'safe'],
-            [['company', 'phone', 'email', 'password', 'password_repeat'], 'required'],
+            [['company', 'phone', 'email', 'password', 'password_repeat'], 'required', 'on' => self::SCENARIO_DEFAULT],
             ['email', 'email'],
-            ['email', 'unique'],
-            ['email', RemoteEmailValidator::class],
+            ['email', 'unique', 'on' => self::SCENARIO_DEFAULT],
+            ['email', RemoteEmailValidator::class, 'on' => self::SCENARIO_DEFAULT],
             ['phone', 'match', 'pattern' => '/^[\d]{11}/i',
                 'message' => 'Номер телефона должен состоять из 11 цифр'],
             ['company', 'string', 'min' => 3],
             ['password', 'string', 'min' => 8],
-            ['password', 'compare']
+            ['password', 'compare', 'on' => self::SCENARIO_DEFAULT]
         ];
     }
 
@@ -54,6 +54,4 @@ class User extends \common\models\User implements IdentityInterface, PersonInter
     {
         return $this->company;
     }
-
-
 }

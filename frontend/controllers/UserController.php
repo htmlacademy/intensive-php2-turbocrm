@@ -15,16 +15,6 @@ class UserController extends Controller
         return $this->goHome();
     }
 
-    public function actionProfile()
-    {
-        if ($id = \Yii::$app->user->getId()) {
-            $user = User::findOne($id);
-
-            print($user->email);
-            \Yii::getLogger()->log('Это сообщение пойдет в лог', 'info');
-        }
-    }
-
     public function actionLogin()
     {
         $loginForm = new LoginForm();
