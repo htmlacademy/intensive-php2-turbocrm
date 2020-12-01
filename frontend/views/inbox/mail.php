@@ -7,6 +7,7 @@ use yii\web\JqueryAsset;
 use yii\widgets\ActiveForm;
 
 $this->params['main_class'] = 'communication';
+$this->title = 'Сообщения электронной почты';
 
 /**
  * @var $messages MailMessage[]

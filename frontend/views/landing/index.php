@@ -3,6 +3,8 @@ use yii\helpers\Url;
 
 $this->params['bodyClass'] = 'landing';
 $this->params['headerClass'] = 'landing-header';
+$this->title = 'Лучшая CRM-система для вашей компании';
+
 ?>
 
 <section class="intro">

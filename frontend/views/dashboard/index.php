@@ -4,6 +4,7 @@ use frontend\helpers\DashboardPresentation;
 use yii\helpers\Url;
 
 $this->params['main_class'] = 'crm-content';
+$this->title = 'Дашборд проекта';
 
 /**
  * @var DashboardPresentation $presentationHelper

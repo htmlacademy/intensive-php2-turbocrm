@@ -6,6 +6,8 @@ use frontend\models\User;
 use yii\widgets\ActiveForm;
 
 $this->params['main_class'] = 'settings';
+$this->title = 'Настройки профиля';
+
 ?>
 
 <h1 class="header-3 settings__header">Настройки</h1>

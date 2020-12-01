@@ -9,7 +9,7 @@ use yii\grid\GridView;
 use yii\web\View;
 use function morphos\Russian\pluralize;
 
-$this->title = 'Список контактов';
+$this->title = 'Список задач';
 ?>
 <section class="contacts-section">
     <?= $this->render('//partials/_grid_header', [

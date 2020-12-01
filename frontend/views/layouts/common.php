@@ -15,7 +15,7 @@ MainAsset::register($this);
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-    <title><?= Html::encode($this->title); ?></title>
+    <title><?= Html::encode($this->title); ?> | TurboCRM</title>
 
     <?php $this->registerCsrfMetaTags(); ?>
     <?php $this->head(); ?>

@@ -1,6 +1,5 @@
 <?php
 /* @var $model User */
-
 /* @var $this View */
 
 use frontend\models\User;
@@ -8,6 +7,8 @@ use yii\web\View;
 use yii\widgets\ActiveForm;
 
 $this->registerCssFile('css/sample.css');
+$this->title = 'Регистрация нового пользователя';
+
 ?>
 
 <div class="registration">
