@@ -28,7 +28,7 @@ class User extends \common\models\User implements IdentityInterface, PersonInter
     {
         return [
             [['company', 'phone', 'email', 'password', 'password_repeat', 'name', 'position'], 'safe'],
-            [['company', 'phone', 'email', 'password', 'password_repeat'], 'required', 'on' => self::SCENARIO_DEFAULT],
+            [['company', 'name', 'email', 'password', 'password_repeat'], 'required', 'on' => self::SCENARIO_DEFAULT],
             ['email', 'email'],
             ['email', 'unique', 'on' => self::SCENARIO_DEFAULT],
             ['email', RemoteEmailValidator::class, 'on' => self::SCENARIO_DEFAULT],

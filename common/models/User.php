@@ -3,7 +3,6 @@ namespace common\models;
 
 use Yii;
 use yii\base\NotSupportedException;
-use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
@@ -18,8 +17,6 @@ use yii\web\IdentityInterface;
  * @property string $email
  * @property string $auth_key
  * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -34,16 +31,6 @@ class User extends ActiveRecord implements IdentityInterface
     public static function tableName()
     {
         return '{{%user}}';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::className(),
-        ];
     }
 
     /**

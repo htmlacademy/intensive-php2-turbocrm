@@ -67,10 +67,14 @@ class UserController extends Controller
         if (\Yii::$app->request->getIsPost()) {
             $loginForm->load(\Yii::$app->request->post());
 
-            if ($loginForm->validate()) {
-                $user = $loginForm->getUser();
+            if (Yii::$app->request->isAjax) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
 
-                \Yii::$app->user->login($user);
+                return ActiveForm::validate($loginForm);
+            }
+
+            if ($loginForm->validate()) {
+                \Yii::$app->user->login($loginForm->getUser());
 
                 return $this->goHome();
             }

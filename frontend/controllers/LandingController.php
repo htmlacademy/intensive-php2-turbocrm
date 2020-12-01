@@ -1,25 +1,27 @@
 <?php
 namespace frontend\controllers;
 use frontend\models\LoginForm;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 
 class LandingController extends Controller
 {
-    public function actionLogin()
+    public function behaviors()
     {
-        $loginForm = new LoginForm();
-
-        if (\Yii::$app->request->getIsPost()) {
-            $loginForm->load(\Yii::$app->request->post());
-
-            if ($loginForm->validate()) {
-                $user = $loginForm->getUser();
-
-                \Yii::$app->user->login($user);
-
-                return $this->goHome();
-            }
-        }
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'denyCallback' => function($rule, $action) {
+                    $this->redirect(['dashboard/index']);
+                },
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['?']
+                    ]
+                ]
+            ]
+        ];
     }
 
     public function actionIndex()

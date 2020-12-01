@@ -8,7 +8,11 @@ use yii\widgets\ActiveForm;
 <div class="modal">
     <div class="modal__container">
         <button class="button button--tiny button--gray modal__close" type="button"><span>&lt; Отмена</span></button>
-        <?php $form = ActiveForm::begin(['id' => 'login-form', 'errorCssClass' => 'field--error', 'options' => ['class' => 'log-in']]); ?>
+        <?php $form = ActiveForm::begin([
+                'id' => 'login-form', 'enableAjaxValidation' => true, 'enableClientValidation' => true,
+                'errorCssClass' => 'field--error', 'action' => 'user/login',
+                'options' => ['class' => 'log-in']
+        ]); ?>
 
         <p class="log-in__title header-1">Вход для клиентов</p>
         <?= $form->field($model, 'email', ['template' => "{input}\n{error}", 'errorOptions' => ['class' => 'field__error-message'],

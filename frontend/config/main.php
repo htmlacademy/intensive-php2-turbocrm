@@ -11,7 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'layout' => 'common',
     'bootstrap' => ['log'],
-    'defaultRoute' => ['landing/index'],
+    'defaultRoute' => 'landing/index',
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
         'api' => [
