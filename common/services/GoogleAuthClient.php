@@ -14,13 +14,14 @@ class GoogleAuthClient implements AuthClient
 
     protected $tokenPath;
 
-    public function __construct($credentials_path, $token_path, $scope)
+    public function __construct($credentials_path, $token_path, $scope, $redirectUrl)
     {
         $client = new Google_Client();
         $client->setApplicationName("Google Auth");
         $client->setScopes($scope);
         $client->setAuthConfig($credentials_path);
         $client->setAccessType("offline");
+        $client->setRedirectUri($redirectUrl);
 
         $this->googleClient = $client;
 
@@ -43,6 +44,11 @@ class GoogleAuthClient implements AuthClient
         return $this->googleClient->isAccessTokenExpired();
     }
 
+    public function isTokexExists()
+    {
+        return file_exists($this->tokenPath);
+    }
+
     public function fetchAccessTokenByCode($code)
     {
         return $this->googleClient->fetchAccessTokenWithAuthCode($code);
@@ -59,6 +65,10 @@ class GoogleAuthClient implements AuthClient
 
     public function prepareClient()
     {
+        if (!$this->isTokexExists()) {
+            return false;
+        }
+
         $this->setToken($this->tokenPath);
 
         if ($this->isTokenExpired()) {

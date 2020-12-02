@@ -6,11 +6,13 @@ namespace common\services;
 
 interface AuthClient
 {
-    public function __construct($credentials_path, $token_path, $scope);
+    public function __construct($credentials_path, $token_path, $scope, $redirectUrl);
 
     public function setToken($path);
 
     public function isTokenExpired();
+
+    public function isTokexExists();
 
     public function fetchAccessTokenByCode($code);
 

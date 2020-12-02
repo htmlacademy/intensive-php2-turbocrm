@@ -27,7 +27,8 @@ class InboxController extends SecuredController
         $authCLient = GoogleAuthClientFactory::getInstance();
 
         if (!$authCLient->prepareClient()) {
-            $this->redirect($authCLient->getAuthUrl());
+            header("Location: " . $authCLient->getAuthUrl());
+            exit;
         }
 
         $this->mailClient = new GmailClient($authCLient);

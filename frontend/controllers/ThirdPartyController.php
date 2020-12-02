@@ -19,7 +19,7 @@ class ThirdPartyController extends Controller
         if ($accessToken) {
             $authCLient->storeToken($accessToken);
 
-            $this->redirect(['inbox/mail']);
+            $this->redirect(['inbox/email']);
         }
 
     }
