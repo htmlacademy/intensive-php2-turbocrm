@@ -6,7 +6,7 @@ namespace frontend\controllers;
 
 use frontend\models\Task;
 
-class TasksController extends TableController
+class TasksController extends EntityController
 {
     public function init()
     {

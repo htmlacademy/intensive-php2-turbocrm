@@ -5,6 +5,8 @@ use yii\db\ActiveRecord;
 
 class Company extends ActiveRecord
 {
+    use SoftDelete;
+
     public $search;
 
     public function search($params)
@@ -45,8 +47,9 @@ class Company extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'phone', 'email', 'address', 'url'], 'safe'],
+            [['name', 'phone', 'email', 'address', 'url', 'search'], 'safe'],
             [['name', 'phone', 'email', 'address', 'url'], 'required', 'on' => 'insert'],
+            [['name', 'phone', 'email'], 'required', 'on' => 'update'],
             [['phone', 'email', 'url'], 'unique'],
             ['phone', 'string', 'length' => 11],
             ['email', 'email']

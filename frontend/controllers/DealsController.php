@@ -8,7 +8,7 @@ use frontend\models\Feed;
 use frontend\models\Note;
 use yii\web\NotFoundHttpException;
 
-class DealsController extends TableController
+class DealsController extends EntityController
 {
     public function init()
     {
@@ -18,7 +18,7 @@ class DealsController extends TableController
         $this->alias = 'deals';
     }
 
-    public function actionIndex()
+    public function actionIndex($id = null)
     {
         $dealStatuses = DealStatus::find()->all();
 

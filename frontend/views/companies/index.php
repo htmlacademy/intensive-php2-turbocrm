@@ -4,6 +4,7 @@
 /** @var $this View */
 
 /** @var $model Company */
+/** @var $searchModel Company */
 
 use frontend\models\Company;
 use frontend\widgets\Notification;
@@ -11,10 +12,13 @@ use yii\data\ActiveDataProvider;
 use yii\grid\DataColumn;
 use yii\grid\GridView;
 use frontend\models\Contact;
+use yii\web\JqueryAsset;
 use yii\web\View;
 use function morphos\Russian\pluralize;
 
 $this->title = 'Список компаний';
+$this->registerJsFile('@web/js/grid.js', ['depends' => [JqueryAsset::class]]);
+
 ?>
 <section class="contacts-section">
     <?= $this->render('//partials/_grid_header', [
@@ -34,8 +38,8 @@ $this->title = 'Список компаний';
                 ['attribute' => 'email', 'format' => 'email'],
                 [
                     'class' => DataColumn::class,
-                    'value' => function () {
-                        return $this->render('/partials/_action_row');
+                    'value' => function ($row) {
+                        return $this->render('/partials/_action_row', ['alias' => 'companies', 'id' => $row->id]);
                     },
                     'header' => '', 'label' => '', 'format' => 'raw'
                 ]

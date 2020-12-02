@@ -17,7 +17,7 @@ $users     = User::find()->all();
         <button class="button button--tiny button--gray modal__close" type="button"><span>&lt; Отмена</span></button>
         <?php
         $form = ActiveForm::begin([
-            'method' => 'post', 'action' => 'deals/create', 'id' => 'deal-create-form',
+            'method' => 'post', 'action' => ['deals/create'], 'id' => 'deal-create-form',
             'enableAjaxValidation' => true,
             'options' => ['class' => 'create-contact'],
             'errorCssClass' => 'field--error',

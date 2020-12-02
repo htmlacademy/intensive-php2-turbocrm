@@ -323,11 +323,6 @@
     };
   });
 
-  var example = (function () {
-    var msg = 'JS check!';
-    console.log(msg);
-  });
-
   var modal = (function () {
     var buttonOpen = document.querySelector('.modal-open');
     if (!buttonOpen) return;
@@ -7288,7 +7283,6 @@
   // endregion
 
   utils();
-  example(); //todo remove
 
   modal();
   dataTable();

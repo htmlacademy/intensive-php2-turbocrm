@@ -1,6 +1,7 @@
 <?php
 /** @var ActiveDataProvider $dataProvider */
 /** @var $this View */
+/** @var $searchModel Contact */
 /** @var $model Contact */
 
 use frontend\widgets\Notification;
@@ -8,16 +9,19 @@ use yii\data\ActiveDataProvider;
 use yii\grid\DataColumn;
 use yii\grid\GridView;
 use frontend\models\Contact;
+use yii\web\JqueryAsset;
 use yii\web\View;
 use function morphos\Russian\pluralize;
 
 $this->title = 'Список контактов';
+$this->registerJsFile('@web/js/grid.js', ['depends' => [JqueryAsset::class]]);
+
 ?>
 <section class="contacts-section">
     <?= $this->render('//partials/_grid_header', [
-        'model' => $model, 'dataProvider' => $dataProvider, 'name' => 'Контакты', 'showFilterBtn' => true
+        'model' => $searchModel, 'dataProvider' => $dataProvider, 'name' => 'Контакты', 'showFilterBtn' => true
     ]); ?>
-    <?= $this->render('//partials/_grid_filter', ['model' => $model]); ?>
+    <?= $this->render('//partials/_grid_filter', ['model' => $searchModel]); ?>
     <div class="contacts-section__content">
         <?=GridView::widget([
             'dataProvider' => $dataProvider,
@@ -33,8 +37,8 @@ $this->title = 'Список контактов';
                 ['attribute' => 'email', 'format' => 'email'],
                 [
                     'class' => DataColumn::class,
-                    'value' => function() {
-                        return $this->render('/partials/_action_row');
+                    'value' => function($row) {
+                        return $this->render('/partials/_action_row', ['alias' => 'contacts', 'id' => $row->id]);
                     },
                     'header' => '', 'label' => '', 'format' => 'raw'
                 ]

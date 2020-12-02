@@ -1,13 +1,16 @@
+<?php
+use yii\helpers\Url;
+
+/**
+ * @var $alias string
+ * @var $id string
+ */
+?>
+
 <div class="data-table__edit-block">
     <div class="data-table__buttons">
-        <button class="data-table__btn button button--tiny button--red" type="button">Удалить
-        </button>
-        <button class="data-table__btn button button--tiny button--gray" type="button">
-            Дублировать
-        </button>
-        <button class="data-table__btn button button--tiny button--gray" type="button">
-            Редактировать
-        </button>
+        <a href="<?=Url::to(["$alias/delete", 'id' => $id]); ?>" class="data-table__btn button button--tiny button--red">Удалить</a>
+        <a href="<?=Url::to(["$alias/index", 'id' => $id, 'modal' => 1]); ?>" class="data-table__btn button button--tiny button--gray">Редактировать</a>
         <button class="data-table__close-edition button button--icon js-toggle-edition"
                 type="button">
             <svg width="24" height="24">

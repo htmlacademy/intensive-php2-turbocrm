@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use frontend\interfaces\PersonInterface;
+use yii\behaviors\BlameableBehavior;
 use yii\db\ActiveRecord;
 use yii2tech\ar\softdelete\SoftDeleteBehavior;
 use yii2tech\ar\softdelete\SoftDeleteQueryBehavior;
@@ -27,12 +28,31 @@ use yii2tech\ar\softdelete\SoftDeleteQueryBehavior;
  */
 class Deal extends ActiveRecord
 {
+
+    use SoftDelete;
+
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
         return 'deal';
+    }
+
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+
+        $behaviors['softDeleteBahvior'] = [
+            'class' => SoftDeleteBehavior::class,
+            'softDeleteAttributeValues' => ['deleted' => true]
+        ];
+        $behaviors['blame'] = [
+            'class' => BlameableBehavior::class,
+            'createdByAttribute' => 'user_id', 'updatedByAttribute' => false
+        ];
+
+        return $behaviors;
     }
 
     /**
@@ -42,7 +62,7 @@ class Deal extends ActiveRecord
     {
         return [
             [['company_id', 'status_id', 'contact_id', 'executor_id', 'budget_amount', 'name', 'description'], 'required', 'on' => 'insert'],
-            [['company_id', 'status_id', 'contact_id', 'executor_id', 'budget_amount', 'name', 'description'], 'safe'],
+            [['company_id', 'status_id', 'contact_id', 'executor_id', 'budget_amount', 'due_date', 'name', 'description'], 'safe'],
             [['company_id', 'status_id', 'contact_id', 'executor_id', 'budget_amount'], 'integer'],
             [['description', 'name'], 'string'],
             [['name'], 'string', 'max' => 255],
@@ -68,25 +88,6 @@ class Deal extends ActiveRecord
             'dt_add' => 'Дата создания',
         ];
     }
-
-    public function behaviors()
-    {
-        return [
-            'softDeleteBahvior' => [
-                'class' => SoftDeleteBehavior::class,
-                'softDeleteAttributeValues' => ['deleted' => true]
-            ]
-        ];
-    }
-
-    public static function find()
-    {
-        $query = parent::find();
-        $query->attachBehavior('softDelete', SoftDeleteQueryBehavior::class);
-
-        return $query;
-    }
-
 
     public function getFeedItems()
     {

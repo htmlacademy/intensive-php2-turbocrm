@@ -6,6 +6,8 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 /** @var $model Contact */
 
+$action = $model->id ? 'update' : 'create';
+$title = $model->id ? 'Редактирование контакта' : 'Новый контакт';
 ?>
 
 <div class="modal">
@@ -13,7 +15,7 @@ use yii\widgets\ActiveForm;
         <button class="button button--tiny button--gray modal__close" type="button"><span>&lt; Отмена</span></button>
         <?php
         $form = ActiveForm::begin([
-            'method' => 'post', 'action' => 'companies/create', 'id' => 'company-create-form',
+            'method' => 'post', 'action' => ['companies/' . $action, 'id' => $model->id], 'id' => 'company-create-form',
             'enableAjaxValidation' => true,
             'options' => ['class' => 'create-contact'],
             'errorCssClass' => 'field--error',
@@ -24,7 +26,7 @@ use yii\widgets\ActiveForm;
                 'errorOptions' => ['class' => 'field__error-message']
             ]
         ]); ?>
-        <p class="create-contact__title header-3">Новая компания</p>
+        <p class="create-contact__title header-3"><?=$title;?></p>
 
         <?=$form->field($model, 'name'); ?>
         <?=$form->field($model, 'phone'); ?>

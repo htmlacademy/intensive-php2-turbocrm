@@ -8,6 +8,10 @@ use yii\widgets\ActiveForm;
 
 $companies = Company::find()->asArray()->all();
 $types_list = ContactType::find()->asArray()->all();
+
+$action = $model->id ? 'update' : 'create';
+$title = $model->id ? 'Редактирование контакта' : 'Новый контакт';
+
 ?>
 
 <div class="modal">
@@ -15,7 +19,7 @@ $types_list = ContactType::find()->asArray()->all();
         <button class="button button--tiny button--gray modal__close" type="button"><span>&lt; Отмена</span></button>
         <?php
         $form = ActiveForm::begin([
-            'method' => 'post', 'action' => 'contacts/create', 'id' => 'contact-create-form',
+            'method' => 'post', 'action' => ['contacts/' . $action, 'id' => $model->id], 'id' => 'contact-create-form',
             'enableAjaxValidation' => true,
             'options' => ['class' => 'create-contact'],
             'errorCssClass' => 'field--error',
@@ -26,7 +30,7 @@ $types_list = ContactType::find()->asArray()->all();
                 'errorOptions' => ['class' => 'field__error-message']
             ]
         ]); ?>
-        <p class="create-contact__title header-3">Новый контакт</p>
+        <p class="create-contact__title header-3"><?=$title;?></p>
 
         <?=$form->field($model, 'name'); ?>
 

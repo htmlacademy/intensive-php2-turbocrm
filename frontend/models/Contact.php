@@ -8,6 +8,8 @@ use yii\db\ActiveRecord;
 
 class Contact extends ActiveRecord implements PersonInterface
 {
+    use SoftDelete;
+
     public $search;
 
     public function search($params)
@@ -54,6 +56,7 @@ class Contact extends ActiveRecord implements PersonInterface
         return [
             [['name', 'phone', 'email', 'position', 'type_id', 'company_id', 'search'], 'safe'],
             [['name', 'phone', 'email', 'position', 'type_id', 'company_id'], 'required', 'on' => 'insert'],
+            [['name', 'email'], 'required', 'on' => 'update'],
             ['company_id', 'exist', 'targetRelation' => 'company'],
             ['type_id', 'exist', 'targetRelation' => 'status'],
             [['phone', 'email'], 'unique'],
