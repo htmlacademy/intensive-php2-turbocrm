@@ -25,5 +25,6 @@ use yii\widgets\ActiveForm;
 
         <button class="button button--big log-in__button" type="submit"><span>Вход</span></button>
         <?php ActiveForm::end(); ?>
+        <span>Тестовый вход: demo@demo.ru / demo</span>
     </div>
 </div>

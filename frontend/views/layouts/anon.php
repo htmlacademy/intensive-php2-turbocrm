@@ -9,7 +9,6 @@ use yii\web\View;
 
 MainAsset::register($this);
 $this->registerLinkTag(['rel' => 'icon', 'type' => 'iamge/png', 'href' => '/favicon.png']); ?>
-?>
 <?php $this->beginPage() ?>
 
 <!DOCTYPE html>

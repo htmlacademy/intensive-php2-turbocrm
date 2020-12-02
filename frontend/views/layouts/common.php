@@ -7,7 +7,6 @@ use yii\widgets\Menu;
 
 MainAsset::register($this);
 $this->registerLinkTag(['rel' => 'icon', 'type' => 'iamge/png', 'href' => '/favicon.png']); ?>
-?>
 <?php $this->beginPage(); ?>
 <!DOCTYPE html>
 <html lang="ru">
