@@ -13,8 +13,10 @@ class GoogleAuthClientFactory
      */
     public static function getInstance()
     {
+        $token = 'token' . Yii::$app->user->getId() . '.json';
+
         $creds = Yii::getAlias('@common/data/credentials.json');
-        $token = Yii::getAlias('@common/data/token.json');
+        $token = Yii::getAlias('@common/data/' . $token);
 
         $redirectUrl = Url::to('third-party/auth', true);
 
