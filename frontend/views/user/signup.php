@@ -16,10 +16,12 @@ $this->title = 'Регистрация нового пользователя';
         'id' => 'signup-form',
         'enableAjaxValidation' => false,
         'options' => ['class' => 'registration__form'],
+        'errorCssClass' => 'field--error',
         'fieldConfig' => [
             'template' => "{input}\n{error}",
             'options' => ['class' => 'field registration__field'],
-            'inputOptions' => ['class' => 'field__input input input--big placeholder-shown']
+            'inputOptions' => ['class' => 'field__input input input--big placeholder-shown'],
+            'errorOptions' => ['tag' => 'span', 'class' => 'field__error-message']
         ]
     ]); ?>
     <p class="registration__title header-1">Регистрация</p>
