@@ -4,6 +4,7 @@
 
 use app\models\Deal;
 use app\models\Feed;
+use yii\helpers\Html;
 use yii\web\View;
 
 ?>
@@ -27,7 +28,7 @@ use yii\web\View;
 
         <?php case Feed::TYPE_NOTE: ?>
             <span class="event__text">оставил заметку</span>
-            <p class="event__message"><?=$model->getAssociatedContent()->content ?? null; ?></p>
+            <p class="event__message"><?=$model->getAssociatedContent()->content ? Html::encode($model->getAssociatedContent()->content) : null; ?></p>
         <?php endswitch; ?>
     </div>
 </li>

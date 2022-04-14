@@ -51,7 +51,6 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'iamge/png', 'href' => '/favi
                     ['label' => 'Компании', 'url' => ['companies/index']],
                     ['label' => 'Задачи', 'url' => ['tasks/index']],
                     ['label' => 'Сделки', 'url' => ['deals/index']],
-                    ['label' => 'Коммуникации', 'url' => ['inbox/email']],
                     ['label' => 'Настройки', 'url' => ['profile/settings']],
                 ]
             ]); ?>
